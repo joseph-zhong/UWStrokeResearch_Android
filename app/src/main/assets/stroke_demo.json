@@ -1,0 +1,60 @@
+{
+	"q000": {
+		"type": "BUTTON",
+		"question": "Ready?",
+		"options": [
+			{"type": "EQUAL", "value":"start", "next": "q001"}
+		]
+	},
+	"q002": {
+		"type": "NUMBER",
+		"question": "Last known normal",
+		"options": [
+			{"type": "RANGE", "lower": "MIN", "upper": "9", "next": "q003"},
+			{"type": "RANGE", "lower": "9", "upper": "15", "next": "q006"},
+			{"type": "RANGE", "lower": "15", "upper": "MAX", "next": "r000"}
+		]
+	},
+	"q003": {
+		"type": "OR",
+		"question": ["q004", "q005"]
+	},
+	"q004": {
+		"type": "BUTTON",
+		"question": "TIA with ABCD2 >= 4",
+		"options": [
+			{"type": "EQUAL", "value": "yes", "next": "q006"},
+			{"type": "EQUAL", "value": "no", "next": "q003"}
+		]
+	},
+	"q005": {
+		"type": "NUMBER",
+		"question": "NIHSS",
+		"options": [
+			{"type": "EQUAL", "value": "2", "next": "q006"},
+			{"type": "EQUAL", "value": "3", "next": "q006"},
+			{"type": "EQUAL", "value": "4", "next": "q006"},
+			{"type": "EQUAL", "value": "5", "next": "q006"},
+			{"type": "RANGE", "lower": "6", "upper": "22", "next": "q006"},
+			{"type": "EQUAL", "value": "23", "next": "q006"},
+			{"type": "RANGE", "lower": "24", "upper": "MAX", "next": "q006"}
+		]
+	},
+	"q006": {
+		"type": "BUTTON",
+		"question": "Not Done Yet.",
+		"options": [
+			{"type": "EQUAL", "value": "finish", "next": "r000"}
+		]
+	},
+	"r000": {
+		"type": "UNKNOWN",
+		"message": "No studies available."
+	},
+	"r001": {
+		"type": "RESULT",
+		"phone": "XXX-XXX-XXXX",
+		"researcher": "XXX",
+		"message": ""
+	}
+}
