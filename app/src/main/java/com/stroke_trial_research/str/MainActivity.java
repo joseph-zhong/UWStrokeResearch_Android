@@ -1,16 +1,22 @@
-package com.uw_cse.str;
+package com.stroke_trial_research.str;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
+    ListView mListView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //TEST OF PARSER CLASS
+        JSONParser jsonParser= new JSONParser();
+        jsonParser.getNodeSet(getApplicationContext(), R.raw.stroke_demo);
     }
 
     @Override
