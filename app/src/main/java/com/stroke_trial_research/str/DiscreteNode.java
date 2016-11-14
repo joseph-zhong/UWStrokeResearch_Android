@@ -13,24 +13,37 @@ import java.util.Map;
  *  Contains a Hashmap linking phrases for buttons
  *  to connection node QIDS.
  *
+ *  Also Contains a map of phrases for buttons to
+ *  Nodes.
  */
 public class DiscreteNode extends Node {
     //Connections of phrase to QID
     private Map<String, String> connections;
+    private Map<String, Node> nodeConnections;
 
-    //Constructor for all fields
+    //Constructor for a HashSet of nodes
     public DiscreteNode(int connectNum, String QID, String question) {
         super(connectNum, QID, question, "BUTTON");
         this.connections = new HashMap<String, String>();
+        this.nodeConnections = new HashMap<String, Node>();
     }
 
-    //Adds a new node to the connections map.
+    //Adds a new node name to the connections map.
     //requires a phrase option and a QID for next
-    public void addNode(String option, String next){
+    public void addNodeS(String option, String next){
         connections.put(option, next);
+    }
+
+    //Adds a new Node to the node connections map
+    public void addNode(String option, Node next) {
+        nodeConnections.put(option, next);
     }
 
     public Map<String, String> getConnections() {
         return connections;
+    }
+
+    public Map<String, Node> getNodeConnections() {
+        return nodeConnections;
     }
 }

@@ -2,6 +2,7 @@ package com.stroke_trial_research.str;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -17,6 +18,15 @@ public class MainActivity extends AppCompatActivity {
         //TEST OF PARSER CLASS
         JSONParser jsonParser= new JSONParser();
         jsonParser.getNodeSet(getApplicationContext(), R.raw.stroke_demo);
+
+        long startTime = System.nanoTime();
+        jsonParser.getNodeTree(getApplicationContext(), R.raw.stroke_demo_new);
+        long endTime = System.nanoTime();
+
+        long duration = (endTime - startTime);
+        String dur = "" + duration;
+        Log.d("V", dur);
+        //Takes about 37 milliseconds. Hella slow right now.
     }
 
     @Override

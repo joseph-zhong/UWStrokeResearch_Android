@@ -14,7 +14,7 @@ package com.stroke_trial_research.str;
  */
 
 public class ResultNode extends Node {
-
+    //Possibly defunct fields
     private String phone;
     private String researcher;
 
