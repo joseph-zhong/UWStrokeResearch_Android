@@ -45,4 +45,12 @@ public abstract class Node {
     public String getType() {
         return type;
     }
+
+    /*
+    //Want to hash via QID?
+    @Override
+    public int hashCode() {
+        return QID.hashCode();
+    }
+    */
 }

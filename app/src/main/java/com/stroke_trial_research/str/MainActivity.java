@@ -17,16 +17,40 @@ public class MainActivity extends AppCompatActivity {
 
         //TEST OF PARSER CLASS
         JSONParser jsonParser= new JSONParser();
-        jsonParser.getNodeSet(getApplicationContext(), R.raw.stroke_demo);
-
         long startTime = System.nanoTime();
-        jsonParser.getNodeTree(getApplicationContext(), R.raw.stroke_demo_new);
+        jsonParser.getNodeSet(getApplicationContext(), R.raw.stroke_demo);
         long endTime = System.nanoTime();
-
         long duration = (endTime - startTime);
-        String dur = "" + duration;
+        Log.d("V", ("Set: " + duration));
+        //Takes about 70 milliseconds. Absolutely baffling.
+
+        startTime = System.nanoTime();
+        Node n = jsonParser.getNodeTree(getApplicationContext(), R.raw.stroke_demo_new);
+        endTime = System.nanoTime();
+
+        duration = (endTime - startTime);
+        String dur = "Tree: " + duration;
         Log.d("V", dur);
         //Takes about 37 milliseconds. Hella slow right now.
+
+        //Eventual test of tree connections.
+        /*
+        String tip = "";
+
+        while (!n.type.equals("RESULT") || !n.type.equals("UNKNOWN")) {
+            tip = n.type;
+
+            switch (tip) {
+                case "NUMBER":
+                    break;
+                case "BUTTON":
+                    break;
+                case ""
+            }
+        }
+        */
+
+
     }
 
     @Override

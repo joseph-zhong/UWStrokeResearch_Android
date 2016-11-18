@@ -103,23 +103,13 @@ public class JSONParser {
                         Log.d("V", "Successfully added a Number Node");
                         break;
                     case "BUTTON": //ADDS BUTTONS FOR OPTIONS
-                        if (options.length() == 2) {
-                            BinaryNode dn = new BinaryNode(options.length(), name, question);
-                            for (int i = 0; i < options.length(); i++) {
-                                JSONObject jsonObject = options.getJSONObject(i);
-                                dn.addNode(jsonObject.getString("value"),
-                                            jsonObject.getString("next"));
-                            }
-                            Log.d("V", "Successfully added a Binary Node");
-                        } else {
-                            DiscreteNode dn = new DiscreteNode(options.length(), name, question);
-                            for (int i = 0; i < options.length(); i++) {
-                                JSONObject jsonObject = options.getJSONObject(i);
-                                dn.addNodeS(jsonObject.getString("value"),
-                                        jsonObject.getString("next"));
-                            }
-                            Log.d("V", "Successfully added a Discrete Node");
+                        DiscreteNode dn = new DiscreteNode(options.length(), name, question);
+                        for (int i = 0; i < options.length(); i++) {
+                            JSONObject jsonObject = options.getJSONObject(i);
+                            dn.addNodeS(jsonObject.getString("value"),
+                                    jsonObject.getString("next"));
                         }
+                        Log.d("V", "Successfully added a Discrete Node");
                         break;
                     case "OR": //FOR LOGICAL OR NODE
                         JSONArray nexts = jnode.getJSONArray("question");

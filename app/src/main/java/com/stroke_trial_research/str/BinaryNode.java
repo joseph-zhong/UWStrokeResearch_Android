@@ -14,8 +14,10 @@ import java.util.Map;
  * Contains a Hashmap of boolean to String of connections
  * Where the string is the name of the corresponding node
  *
- *
- * NOT USABLE ANYMORE
+ */
+
+ /**
+ * NOT USABLE ANYMORE!!!!!!!!
  */
 public class BinaryNode extends Node {
     //yes corresponds to true, and no corresponds to false
