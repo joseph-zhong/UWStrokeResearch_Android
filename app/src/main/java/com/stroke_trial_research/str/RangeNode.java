@@ -14,7 +14,7 @@ import java.util.Map;
  * to corresponding QIDS.
  * Also contains a map where ranges map to Nodes.
  */
-public class RangeNode extends Node{
+public class RangeNode extends Node {
 
     private Map<Range, String> connections;
     private Map<Range, Node> nodeConnections;

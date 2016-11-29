@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
         //TEST OF PARSER CLASS
         JSONParser jsonParser= new JSONParser();
         long startTime = System.nanoTime();
-        jsonParser.getNodeSet(getApplicationContext(), R.raw.stroke_demo);
+        jsonParser.getNodeList(getApplicationContext(), R.raw.stroke_demo);
         long endTime = System.nanoTime();
         long duration = (endTime - startTime);
-        Log.d("V", ("Set: " + duration));
-        //Takes about 70 milliseconds. Absolutely baffling.
+        Log.d("V", ("List: " + duration));
+        //Takes about 70 - 90 milliseconds. Absolutely baffling.
 
         startTime = System.nanoTime();
         Node n = jsonParser.getNodeTree(getApplicationContext(), R.raw.stroke_demo_new);

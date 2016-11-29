@@ -9,7 +9,7 @@ package com.stroke_trial_research.str;
  * They also have  a spot for their type, their id and their question
  * that should be displayed to the screen (except logic which is just for linking other nodes)
  */
-public abstract class Node {
+public abstract class Node implements Comparable<Node> {
 
     //Number of Nodes in the connections
     protected int connectNum;
@@ -46,11 +46,19 @@ public abstract class Node {
         return type;
     }
 
-    /*
-    //Want to hash via QID?
-    @Override
-    public int hashCode() {
-        return QID.hashCode();
+
+    // Says that higher up nodes (ie with smaller QIDS) are greater and
+    //that  q nodes are always greater than r nodes.
+    public int compareTo(Node node) {
+        if (node == null) {
+            throw new NullPointerException();
+        }
+        if (this.QID.startsWith("q") && node.QID.startsWith("r")) {
+            return 1;
+        } else if (this.QID.startsWith("r") && node.QID.startsWith("q")) {
+            return -1;
+        } else {
+            return Integer.parseInt(node.QID.substring(1)) - Integer.parseInt(this.QID.substring(1));
+        }
     }
-    */
 }

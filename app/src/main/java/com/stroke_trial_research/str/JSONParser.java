@@ -9,9 +9,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
+
 
 /**
  * Created by James on 11/9/2016.
@@ -52,9 +52,9 @@ public class JSONParser {
     }
 
     //Loads a JSON file from raw and finds all possible nodes
-    // which it then loads into a HashSet of Node names and returns
-    public Set<Node> getNodeSet(Context context, int filename){
-        Set<Node> nodes = new HashSet<Node>();
+    // which it then loads into a ArrayList of Node names and returns
+    public ArrayList<Node> getNodeList(Context context, int filename){
+        ArrayList<Node> nodes = new ArrayList<Node>();
         
         try {
             JSONObject root = new JSONObject(this.loadJSONFromRaw(context, filename));
