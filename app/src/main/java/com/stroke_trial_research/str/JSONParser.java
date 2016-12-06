@@ -32,13 +32,16 @@ public class JSONParser {
         super();
     }
 
-    //load a file from the Raw resource folder
-    //Returns a string of the contents of the loaded file
-    //Used for creating a JSON object from file
-    public String loadJSONFromRaw(Context context, int name) {
+    /**
+     * Load a file from the Raw resource folder
+     * Used for creating a JSON object from file
+     * @param context
+     * @param id ID of Resource
+     * @return a string of the contents of the loaded file */
+    public String loadJSONFromRaw(Context context, int id) {
         String json = null;
         try {
-            InputStream is = context.getResources().openRawResource(name);
+            InputStream is = context.getResources().openRawResource(id);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -63,12 +66,12 @@ public class JSONParser {
             //Iterate through each node in the file
             while (keys.hasNext()) {
                 String name = keys.next();
-                Log.d("V", name);
+                Log.d("DEBUG", name);
 
                 JSONObject jnode = root.getJSONObject(name);
 
                 String type = jnode.getString("type");
-                Log.d("V", type);
+                Log.d("DEBUG", type);
 
                 JSONArray options = null;
                 String question = "";
@@ -100,7 +103,7 @@ public class JSONParser {
                             }
                         }
                         nodes.add(rn);
-                        Log.d("V", "Successfully added a Number Node");
+                        Log.d("DEBUG", "Successfully added a Number Node");
                         break;
                     case "BUTTON": //ADDS BUTTONS FOR OPTIONS
                         DiscreteNode dn = new DiscreteNode(options.length(), name, question);
@@ -109,27 +112,27 @@ public class JSONParser {
                             dn.addNodeS(jsonObject.getString("value"),
                                     jsonObject.getString("next"));
                         }
-                        Log.d("V", "Successfully added a Discrete Node");
+                        Log.d("DEBUG", "Successfully added a Discrete Node");
                         break;
                     case "OR": //FOR LOGICAL OR NODE
                         JSONArray nexts = jnode.getJSONArray("question");
                         LogicNode ln = new LogicNode(nexts.length(), name, "", "OR",
                                                      nexts.getString(0), nexts.getString(1));
                         nodes.add(ln);
-                        Log.d("V", "Successfully added a Logical OR Node");
+                        Log.d("DEBUG", "Successfully added a Logical OR Node");
                         break;
                     case "UNKNOWN": //FOR UNKNOWN OUTCOME NODES
                         ResultNode resnu = new ResultNode(name, question, jnode.getString("type"));
                         nodes.add(resnu);
-                        Log.d("V", "Successfully added an UNKNOWN terminal node");
+                        Log.d("DEBUG", "Successfully added an UNKNOWN terminal node");
                         break;
                     case "RESULT": //FOR RESULT NODES
                         ResultNode resnr = new ResultNode(name, question, jnode.getString("type"));
                         nodes.add(resnr);
-                        Log.d("V", "Successfully added a RESULT terminal node");
+                        Log.d("DEBUG", "Successfully added a RESULT terminal node");
                         break;
                     default:
-                        Log.d("E", "Type not defined");
+                        Log.e("ERROR", "Type not defined");
                         break;
                 }
             }
@@ -151,10 +154,10 @@ public class JSONParser {
 
             if (keys.hasNext()) {
                 String first = keys.next();
-                Log.d("V", first);
+                Log.d("DEBUG", first);
                 node = processNode(first, root);
             } else {
-                Log.d("E", "No nodes found");
+                Log.e("ERROR", "No nodes found");
             }
 
 
@@ -170,10 +173,10 @@ public class JSONParser {
     private Node processNode(String QID, JSONObject root) {
         try {
             JSONObject jnode = root.getJSONObject(QID); //get the contents of the node
-            Log.d("V", QID);
+            Log.d("DEBUG", QID);
 
             String type = jnode.getString("type");
-            Log.d("V", type);
+            Log.d("DEBUG", type);
 
             if (QID.startsWith("r")) { //Base case, return result node
                 String question = jnode.getString("message");

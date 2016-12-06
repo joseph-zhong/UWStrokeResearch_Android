@@ -11,9 +11,11 @@
         <!--<item name="android:logo">@color/main</item>-->
     <!--</style>-->
 
-    <!--<style name="title_bar" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">-->
-        <!--<item name="android:textColor">@color/white</item>-->
-    <!--</style>-->
+    <style name="title_bar" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
+        <item name="titleTextAppearance">@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle</item>
+    </style>
 
 
 </resources>

@@ -21,20 +21,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.List;
 
 public class MainActivity extends Activity {
-    ListView mListView = null;
-    JSONParser mJsonParser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setUpHome();
-
-
-        //TEST OF PARSER CLASS
-        JSONParser jsonParser = new JSONParser();
-
     }
 
     private void setUpHome() {
@@ -54,41 +46,6 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this, "Coming soon!", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void testJsonParser() {
-        long startTime = System.nanoTime();
-        mJsonParser.getNodeSet(getApplicationContext(), R.raw.stroke_demo);
-        long endTime = System.nanoTime();
-        long duration = (endTime - startTime);
-        Log.d("DEBUG", ("Set: " + duration));
-        //Takes about 70 milliseconds. Absolutely baffling.
-
-        startTime = System.nanoTime();
-        Node n = mJsonParser.getNodeTree(getApplicationContext(), R.raw.stroke_demo_new);
-        endTime = System.nanoTime();
-
-        duration = (endTime - startTime);
-        String dur = "Tree: " + duration;
-        Log.d("DEBUG", dur);
-        //Takes about 37 milliseconds. Hella slow right now.
-
-        //Eventual test of tree connections.
-        /*
-        String tip = "";
-
-        while (!n.type.equals("RESULT") || !n.type.equals("UNKNOWN")) {
-            tip = n.type;
-
-            switch (tip) {
-                case "NUMBER":
-                    break;
-                case "BUTTON":
-                    break;
-                case ""
-            }
-        }
-        */
     }
 
     @Override
