@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="action_example" type="id">action_example</item>
+    <item name="action_settings" type="id">action_settings</item>
+</resources>

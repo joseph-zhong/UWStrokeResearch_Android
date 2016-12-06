@@ -1,56 +1,51 @@
 package com.stroke_trial_research.str;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    ListView mListView = null;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.List;
+
+public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //TEST OF PARSER CLASS
-        JSONParser jsonParser= new JSONParser();
-        long startTime = System.nanoTime();
-        jsonParser.getNodeList(getApplicationContext(), R.raw.stroke_demo);
-        long endTime = System.nanoTime();
-        long duration = (endTime - startTime);
-        Log.d("V", ("List: " + duration));
-        //Takes about 70 - 90 milliseconds. Absolutely baffling.
+        setUpHome();
+    }
 
-        startTime = System.nanoTime();
-        Node n = jsonParser.getNodeTree(getApplicationContext(), R.raw.stroke_demo_new);
-        endTime = System.nanoTime();
+    private void setUpHome() {
+        final Button clientButton = (Button) findViewById(R.id.client_btn);
+        final Button adminButton = (Button) findViewById(R.id.admin_btn);
 
-        duration = (endTime - startTime);
-        String dur = "Tree: " + duration;
-        Log.d("V", dur);
-        //Takes about 37 milliseconds. Hella slow right now.
-
-        //Eventual test of tree connections.
-        /*
-        String tip = "";
-
-        while (!n.type.equals("RESULT") || !n.type.equals("UNKNOWN")) {
-            tip = n.type;
-
-            switch (tip) {
-                case "NUMBER":
-                    break;
-                case "BUTTON":
-                    break;
-                case ""
+        clientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ClientListActivity.class));
             }
-        }
-        */
+        });
 
-
+        adminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Coming soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
