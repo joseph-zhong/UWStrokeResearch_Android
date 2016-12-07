@@ -8,6 +8,7 @@ package com.stroke_trial_research.str;
  * track of how many other nodes they connect to.
  * They also have  a spot for their type, their id and their question
  * that should be displayed to the screen (except logic which is just for linking other nodes)
+ * Nodes can also be compared to one another to see which one comes first or to sort them.
  */
 public abstract class Node implements Comparable<Node> {
 

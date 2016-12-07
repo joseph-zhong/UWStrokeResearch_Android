@@ -19,7 +19,7 @@ import java.util.Iterator;
  * -Purpose
  * Class for taking JSON files and parsing them
  * into usable data structures.
- * Currently can parse into a Tree or a Hashmap
+ * Currently can parse into a Tree or a ArrayList
  *
  * -Future upgrades
  * Create a method for grabbing files from internet source
