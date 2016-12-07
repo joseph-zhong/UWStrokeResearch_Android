@@ -1,11 +1,11 @@
 # UWStrokeResearch_Android
 
-Repository for Android Mobile App 
+- Repository for Android Mobile App 
+- Facilitating Stroke Research with UW Medicine and Harborview Medical Center
+- [iOS App Repository](https://github.com/Dilraj-Singh-Devgun/UWStrokeResearch_iOS)
 
-Facilitating Stroke Research with UW Medicine and Harborview Medical Center
-
-## Frontend
-(Joseph)
+## TODO
+### Frontend
 
 - Hardcoding 
   - ~~Client/Admin Page~~
@@ -15,14 +15,12 @@ Facilitating Stroke Research with UW Medicine and Harborview Medical Center
     - https://github.com/kaelaela/VerticalViewPager
   - Contact
 
-## Design
+### Architecture
 
-- Question
-- Node
-- Tree Loader
-- Path Tracker
-- Tree Handler
-- List of Trees
-
-## Detail
-
+- Backend Integration
+- ~~Question~~
+- ~~Node~~
+- ~~Tree Loader~~
+- ~~Path Tracker~~
+- ~~Tree Handler~~
+- ~~List of Trees~~
