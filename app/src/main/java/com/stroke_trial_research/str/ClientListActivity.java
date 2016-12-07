@@ -46,9 +46,9 @@ public class ClientListActivity extends AppCompatActivity
         });
 
         JSONParser jsonParser = new JSONParser();
-        Set<Node> nodeSet = jsonParser.getNodeSet(this, R.raw.stroke_demo);
+        ArrayList<Node> nodeList = jsonParser.getNodeList(this, R.raw.stroke_demo);
         ArrayList<String> qidList = new ArrayList<>();
-        for (Node n:nodeSet) {
+        for (Node n:nodeList) {
             qidList.add(n.getQID());
         }
         String[] values = new String[qidList.size()];
