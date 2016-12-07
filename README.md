@@ -8,10 +8,11 @@ Facilitating Stroke Research with UW Medicine and Harborview Medical Center
 (Joseph)
 
 - Hardcoding 
-  - Client/Admin Page
-  - List of Trees Available 
+  - ~~Client/Admin Page~~
+  - ~~List of Trees Available~~
   - Tree Adder
   - Main UI (Question/Input)
+    - https://github.com/kaelaela/VerticalViewPager
   - Contact
 
 ## Design
