@@ -67,11 +67,10 @@ public class JSONParser {
             while (keys.hasNext()) {
                 String name = keys.next();
                 Log.d("DEBUG", name);
-
                 JSONObject jnode = root.getJSONObject(name);
 
                 String type = jnode.getString("type");
-                Log.d("DEBUG", type);
+
 
                 JSONArray options = null;
                 String question = "";
@@ -85,7 +84,7 @@ public class JSONParser {
                 } else {
                     question = jnode.getString("message");
                 }
-
+                Log.d("thing", name + " " + type);
                 switch (type) {
                     case "NUMBER": //REQUIRES USER INPUT OF NUMBER
                         RangeNode rn = new RangeNode(options.length(), name, question);
@@ -112,6 +111,7 @@ public class JSONParser {
                             dn.addNodeS(jsonObject.getString("value"),
                                     jsonObject.getString("next"));
                         }
+                        nodes.add(dn);
                         Log.d("DEBUG", "Successfully added a Discrete Node");
                         break;
                     case "OR": //FOR LOGICAL OR NODE
