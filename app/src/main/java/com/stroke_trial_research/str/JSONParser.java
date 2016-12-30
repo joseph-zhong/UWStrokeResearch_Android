@@ -51,6 +51,7 @@ public class JSONParser {
             ex.printStackTrace();
             return null;
         }
+
         return json;
     }
 
@@ -66,12 +67,12 @@ public class JSONParser {
             //Iterate through each node in the file
             while (keys.hasNext()) {
                 String name = keys.next();
-                Log.d("DEBUG", name);
+                Log.d("DEBUG", name);                                   //name
 
                 JSONObject jnode = root.getJSONObject(name);
 
                 String type = jnode.getString("type");
-                Log.d("DEBUG", type);
+                Log.d("DEBUG", type);                                  //type
 
                 JSONArray options = null;
                 String question = "";
@@ -112,6 +113,7 @@ public class JSONParser {
                             dn.addNodeS(jsonObject.getString("value"),
                                     jsonObject.getString("next"));
                         }
+                        nodes.add(dn);
                         Log.d("DEBUG", "Successfully added a Discrete Node");
                         break;
                     case "OR": //FOR LOGICAL OR NODE

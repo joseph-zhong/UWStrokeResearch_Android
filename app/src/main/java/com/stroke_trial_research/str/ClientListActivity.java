@@ -1,5 +1,7 @@
 package com.stroke_trial_research.str;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v4.app.LoaderManager;
@@ -40,13 +42,22 @@ public class ClientListActivity extends AppCompatActivity
         rootListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                // load tree
+                Bundle bundle = new Bundle();
+                int id = R.raw.stroke_demo;
+                bundle.putInt("ID",id);
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), TreeTraverser.class); //perhaps wrong context
+                // Initialize Tree and Tree handler then begin traversal.
+                //startActivity(intent, bundle);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 Log.i("INFO", "List Item Clicked");
             }
         });
 
         JSONParser jsonParser = new JSONParser();
         ArrayList<Node> nodeList = jsonParser.getNodeList(this, R.raw.stroke_demo);
+        //List of the qid names
         ArrayList<String> qidList = new ArrayList<>();
         for (Node n:nodeList) {
             qidList.add(n.getQID());
@@ -56,8 +67,16 @@ public class ClientListActivity extends AppCompatActivity
             values[i] = qidList.get(i);
         }
 
+        //Test Array for simulated one Tree
+        String[] testTrees = {"Default Tree"};
+
+        /* Links to Nodes. In future, link to list of saved trees on System
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        rootListView.setAdapter(adapter);
+        */
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, testTrees);
         rootListView.setAdapter(adapter);
 
 //        // Create a progress bar to display while the list loads

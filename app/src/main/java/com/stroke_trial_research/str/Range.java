@@ -38,17 +38,9 @@ public class Range {
     //checks whether a value fits within the range
     public boolean isBetween (int value) {
         if (this.type.toLowerCase().equals("range")) {
-            if (value > this.lower || value < this.upper) {
-                return true;
-            } else {
-                return false;
-            }
+            return value > this.lower || value < this.upper;
         } else if (this.type.toLowerCase().equals("equals")) {
-            if (value >= this.lower || value <= this.upper) {
-                return true;
-            } else {
-                return false;
-            }
+            return value >= this.lower || value <= this.upper;
         } else {
             Log.d("E", "Incompatible type");
             return false;

@@ -5,6 +5,7 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
@@ -19,13 +20,13 @@ import java.util.Stack;
 public class QuestionHandler {
     private Node currentQuestion;
     private Stack<String> history;
-    private Set<Node> nodes;
+    private List<Node> nodes;
 
-    public QuestionHandler(Set<Node> nodes){
+    public QuestionHandler(List<Node> nodes){
         this.nodes = nodes;
         this.history = new Stack<String>();
         //Set the start node as q002
-        setCurrentNode("q003");
+        setCurrentNode("q002");
     }
 
     //Get the question of the current node the handler is observing in the tree
@@ -65,7 +66,7 @@ public class QuestionHandler {
     public String giveInput(String input){
         switch(this.currentQuestion.getType()){
             case "NUMBER": //Requires number as an input
-                Log.d("message", "first question asdfasdfasdfasdf" );
+                Log.e("message", "first question" + input );
                 Map<Range, String> nextNumber = ((RangeNode) this.currentQuestion).getConnections();
                 int answer = 0;
                 try {
@@ -74,13 +75,15 @@ public class QuestionHandler {
                     return "Please insert numeric value";
                 }
                 for(Range range : nextNumber.keySet()){
+
                     if(range.lower <= answer && answer < range.upper){
+                        Log.e("connections", nextNumber.get(range));
                         setCurrentNode(nextNumber.get(range));
                     }
                 }
                 return "Please insert numeric value inside the specified range";
             case "BUTTON": //Requires yes/no input
-                Map<Boolean, String> nextNodes = ((BinaryNode) this.currentQuestion).getConnections();
+                Map<String, String> nextNodes = ((DiscreteNode) this.currentQuestion).getConnections();
 
                 if(input.toLowerCase().equals("yes")){
                     setCurrentNode(nextNodes.get("yes"));
@@ -106,6 +109,10 @@ public class QuestionHandler {
 
     //Set the current node with the specified quid
     private void setCurrentNode(String QUID){
+        /*
+        for (Node node : this.nodes) {
+            Log.e(node.getQID(), node.getQuestion());
+        }*/
         for(Node node : this.nodes){
             if(node.getQID().equals(QUID)){
                 this.currentQuestion = node;

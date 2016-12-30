@@ -26,6 +26,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.stroke_trial_research.str.MainActivity"/>
         </activity>
-    </application>
+        <activity
+            android:name=".TreeTraverser"
+            android:label="@string/tree_traverser">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+            #android:parentActivityName="com.stroke_trial_research.str.ClientListActivity">
 
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.stroke_trial_research.str.ClientListActivity"/>
+        </activity>
+    </application>
 </manifest>
