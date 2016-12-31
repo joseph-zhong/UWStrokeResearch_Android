@@ -2,36 +2,35 @@ package com.stroke_trial_research.str;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.text.Editable;
+import android.widget.Toast;
 
 import java.util.List;
 
 
 /**
  * Created by James on 12/27/2016.
+ *
+ * An activity for traversing through the Nodes.
+ *
  */
 
-public class TreeTraverser extends Activity {
-    QuestionHandler questionHandler;
-    TextView questionBox;
-    EditText editText;
-    Button cont;
-    Button yes;
-    Button no;
-    Button unknown;
-    RelativeLayout rangeView;
-    RelativeLayout buttonView;
-    RelativeLayout terminalView;
-    FrameLayout frameLayout;
+public class TreeTraverser extends Activity implements AdapterView.OnItemSelectedListener{
+    private QuestionHandler questionHandler;
+    private TextView questionBox;
+    private EditText editText;
+    private Button rangeCont, buttonCont, history;
+    private RelativeLayout rangeView, buttonView, terminalView;
+    private Spinner buttonSpinner;
+    private String spinnerResp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,30 +62,11 @@ public class TreeTraverser extends Activity {
         } else if (type.equals("BUTTON")) {
             //intial screen is a button view
             makeButtonVisible();
-            buttonScreen(3); //just options for 3 buttons right now.
+            buttonScreen(); //just options for 3 buttons right now.
         } else {
             makeTerminalVisible();
-            terminalScren();
+            terminalScreen();
         }
-        /*
-        questionBox = (TextView) findViewById(R.id.questionView);
-        questionBox.setText(questionHandler.getCurrentQuestion());
-        questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
-        editText = (EditText) findViewById(R.id.rangeTextBox);
-        cont = (Button) findViewById(R.id.rangeContinue);
-
-        cont.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //grab text from bar
-                String response = editText.getText().toString();
-
-                //go to the next node
-                questionHandler.giveInput(response);
-                //Log.e("DEBUG", response);
-                //Log.e("DEBUG", questionHandler.getCurrentQuestion());
-            }
-        });*/
     }
 
     private void makeRangeVisable(){
@@ -115,9 +95,9 @@ public class TreeTraverser extends Activity {
         questionBox.setText(questionHandler.getCurrentQuestion());
         questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
         editText = (EditText) findViewById(R.id.rangeTextBox);
-        cont = (Button) findViewById(R.id.rangeContinue);
+        rangeCont = (Button) findViewById(R.id.rangeContinue);
 
-        cont.setOnClickListener(new View.OnClickListener() {
+        rangeCont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //grab text from bar
@@ -130,34 +110,65 @@ public class TreeTraverser extends Activity {
                     rangeScreen();
                 } else if (type.equals("BUTTON")) {
                     makeButtonVisible();
-                    buttonScreen(3);         //default is 3 buttons
+                    buttonScreen();         //default is 3 buttons
                 } else {                    //Also add logical options
                     makeTerminalVisible();
-                    terminalScren();
+                    terminalScreen();
                 }
 
             }
         });
     }
 
-    private void buttonScreen(int numButtons) {
+    private void buttonScreen() {
         questionBox = (TextView) findViewById(R.id.questionViewB);
         questionBox.setText(questionHandler.getCurrentQuestion());
         questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
 
+        /*
         yes = (Button) findViewById(R.id.yes);
         no = (Button) findViewById(R.id.no);
         unknown = (Button) findViewById(R.id.unknown);
+        */
+        List<String> list = questionHandler.getConnectingAnswers();
 
+        buttonSpinner = (Spinner) findViewById(R.id.buttonSpinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        buttonSpinner.setAdapter(adapter);
+
+
+        buttonSpinner.setOnItemSelectedListener(this);
+        buttonCont = (Button) findViewById(R.id.buttonContinue);
+
+        buttonCont.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Kek", "Does Nothing");
+                questionHandler.giveInput(spinnerResp);
+                String type = questionHandler.getCurrentQuestionType();
+                if (type.equals("NUMBER")) {
+                    makeRangeVisable();
+                    rangeScreen();
+                } else if (type.equals("BUTTON")) {
+                    buttonScreen();         //default is 3 buttons
+                } else {                    //Also add logical options
+                    makeTerminalVisible();
+                    terminalScreen();
+                }
+            }
+        });
+
+        /*
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 questionHandler.giveInput("yes");
                 String type = questionHandler.getCurrentQuestionType();
                 if (type.equals("NUMBER")) {
+                    makeRangeVisable();
                     rangeScreen();
                 } else if (type.equals("BUTTON")) {
-                    makeButtonVisible();
                     buttonScreen(3);         //default is 3 buttons
                 } else {                    //Also add logical options
                     makeTerminalVisible();
@@ -169,12 +180,12 @@ public class TreeTraverser extends Activity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                questionHandler.giveInput("no");
+                questionHandler.giveInput("yes");
                 String type = questionHandler.getCurrentQuestionType();
                 if (type.equals("NUMBER")) {
+                    makeRangeVisable();
                     rangeScreen();
                 } else if (type.equals("BUTTON")) {
-                    makeButtonVisible();
                     buttonScreen(3);         //default is 3 buttons
                 } else {                    //Also add logical options
                     makeTerminalVisible();
@@ -186,22 +197,44 @@ public class TreeTraverser extends Activity {
         unknown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                questionHandler.giveInput("yes"); //Make special notice in history for review
+                questionHandler.giveInput("yes");
                 String type = questionHandler.getCurrentQuestionType();
                 if (type.equals("NUMBER")) {
+                    makeRangeVisable();
                     rangeScreen();
                 } else if (type.equals("BUTTON")) {
-                    makeButtonVisible();
                     buttonScreen(3);         //default is 3 buttons
                 } else {                    //Also add logical options
                     makeTerminalVisible();
                     terminalScren();
                 }
             }
+        });*/
+    }
+
+    private void terminalScreen(){
+        questionBox = (TextView) findViewById(R.id.questionViewT);
+        questionBox.setText(questionHandler.getCurrentQuestion());
+        questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
+
+        history = (Button) findViewById(R.id.history);
+
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
-    private void terminalScren(){
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        spinnerResp = (String) parent.getItemAtPosition(position);
+        Log.e("Hello", spinnerResp);
+    }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        // TODO Write a case for if the user doesn't select anything to prevent blank submissions
     }
 }

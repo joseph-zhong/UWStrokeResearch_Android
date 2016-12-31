@@ -5,6 +5,7 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,7 +27,7 @@ public class QuestionHandler {
         this.nodes = nodes;
         this.history = new Stack<String>();
         //Set the start node as q002
-        setCurrentNode("q002");
+        setCurrentNode("q001");
     }
 
     //Get the question of the current node the handler is observing in the tree
@@ -129,5 +130,57 @@ public class QuestionHandler {
     //Get quid's of a logic node
     private String getOrQuestions(LogicNode n){
         return n.getFirst() + " " + n.getSecond();
+    }
+
+    public List<String> getConnectingNodes(){
+        String type = getCurrentQuestionType();
+        List<String> list = new ArrayList<String>();
+        switch (type) {
+            case "NUMBER":
+                Map<Range, String> mapR = ((RangeNode) this.currentQuestion).getConnections();
+                for( String s : mapR.values()){
+                    list.add(s);
+                }
+                return list;
+            case "BUTTON":
+                Map<String, String> mapB = ((DiscreteNode) this.currentQuestion).getConnections();
+                for (String s: mapB.values()){
+                    list.add(s);
+                }
+                return list;
+            case "OR":
+                list.add(((LogicNode) this.currentQuestion).getFirst());
+                list.add(((LogicNode) this.currentQuestion).getSecond());
+                return list;
+            default:
+                break;
+        }
+        return null;
+    }
+
+    public List<String> getConnectingAnswers() {
+        String type = getCurrentQuestionType();
+        List<String> list = new ArrayList<String>();
+        switch (type) {
+            case "NUMBER":
+                Map<Range, String> mapR = ((RangeNode) this.currentQuestion).getConnections();
+                for(Range r : mapR.keySet()){
+                    list.add(r.toString());
+                }
+                return list;
+            case "BUTTON":
+                Map<String, String> mapB = ((DiscreteNode) this.currentQuestion).getConnections();
+                for (String s: mapB.keySet()){
+                    list.add(s);
+                }
+                return list;
+            case "OR":
+                list.add(((LogicNode) this.currentQuestion).getFirst());
+                list.add(((LogicNode) this.currentQuestion).getSecond());
+                return list;
+            default:
+                break;
+        }
+        return null;
     }
 }

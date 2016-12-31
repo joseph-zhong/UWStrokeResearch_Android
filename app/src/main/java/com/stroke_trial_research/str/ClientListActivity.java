@@ -43,7 +43,7 @@ public class ClientListActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Bundle bundle = new Bundle();
-                int id = R.raw.stroke_demo;
+                int id = R.raw.stroke_demo_new;
                 bundle.putInt("ID",id);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), TreeTraverser.class); //perhaps wrong context
@@ -56,7 +56,7 @@ public class ClientListActivity extends AppCompatActivity
         });
 
         JSONParser jsonParser = new JSONParser();
-        ArrayList<Node> nodeList = jsonParser.getNodeList(this, R.raw.stroke_demo);
+        ArrayList<Node> nodeList = jsonParser.getNodeList(this, R.raw.stroke_demo_new);
         //List of the qid names
         ArrayList<String> qidList = new ArrayList<>();
         for (Node n:nodeList) {
