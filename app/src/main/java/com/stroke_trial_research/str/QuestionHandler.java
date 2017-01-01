@@ -67,7 +67,6 @@ public class QuestionHandler {
     public String giveInput(String input){
         switch(this.currentQuestion.getType()){
             case "NUMBER": //Requires number as an input
-                Log.e("message", "first question" + input );
                 Map<Range, String> nextNumber = ((RangeNode) this.currentQuestion).getConnections();
                 int answer = 0;
                 try {
@@ -112,7 +111,7 @@ public class QuestionHandler {
     private void setCurrentNode(String QUID){
         /*
         for (Node node : this.nodes) {
-            Log.e(node.getQID(), node.getQuestion());
+            Log.e(node.getQID(), node.getType());
         }*/
         for(Node node : this.nodes){
             if(node.getQID().equals(QUID)){

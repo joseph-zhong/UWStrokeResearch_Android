@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,20 +45,17 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         buttonView = (RelativeLayout) findViewById(R.id.buttonLayout);
         terminalView = (RelativeLayout) findViewById(R.id.terminalLayout);
 
-        //frameLayout = new FrameLayout(this);
-
-
-        /*
-        for (Node node : nodeList) {
-            Log.e(node.getQID(), node.getQuestion());
-        }*/
-
         questionHandler = new QuestionHandler(nodeList);
         String type = questionHandler.getCurrentQuestionType();
-        Log.e("TYPE", type);
+        while (type.equals("OR")){
+            ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
+            String first = temp.get(0);
+            questionHandler.giveInput(first);
+            type = questionHandler.getCurrentQuestionType();
+        }
         if (type.equals("NUMBER")) {
             //intial screen is a number view
-            makeRangeVisable();
+            makeRangeVisible();
             rangeScreen();
         } else if (type.equals("BUTTON")) {
             //intial screen is a button view
@@ -69,7 +67,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         }
     }
 
-    private void makeRangeVisable(){
+    private void makeRangeVisible(){
         buttonView.setVisibility(View.GONE);
         terminalView.setVisibility(View.GONE);
         rangeView.setVisibility(View.VISIBLE);
@@ -89,12 +87,11 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
 
 
     private void rangeScreen() {
-
-        //frameLayout.addView(findViewById(R.id.rangeLayout));
         questionBox = (TextView) findViewById(R.id.questionView);
         questionBox.setText(questionHandler.getCurrentQuestion());
         questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
         editText = (EditText) findViewById(R.id.rangeTextBox);
+        editText.setText("");
         rangeCont = (Button) findViewById(R.id.rangeContinue);
 
         rangeCont.setOnClickListener(new View.OnClickListener() {
@@ -106,14 +103,24 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 //go to the next node
                 questionHandler.giveInput(response);
                 String type = questionHandler.getCurrentQuestionType();
-                if (type.equals("NUMBER")) {
-                    rangeScreen();
-                } else if (type.equals("BUTTON")) {
-                    makeButtonVisible();
-                    buttonScreen();         //default is 3 buttons
-                } else {                    //Also add logical options
-                    makeTerminalVisible();
-                    terminalScreen();
+                while (type.equals("OR")){
+                    ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
+                    String first = temp.get(0);
+                    questionHandler.giveInput(first);
+                    type = questionHandler.getCurrentQuestionType();
+                }
+                switch (type) {
+                    case "NUMBER":
+                        rangeScreen();
+                        break;
+                    case "BUTTON":
+                        makeButtonVisible();
+                        buttonScreen();         //default is 3 buttons
+                        break;
+                    default:                     //Also add logical options
+                        makeTerminalVisible();
+                        terminalScreen();
+                        break;
                 }
 
             }
@@ -144,17 +151,27 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         buttonCont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("Kek", "Does Nothing");
                 questionHandler.giveInput(spinnerResp);
                 String type = questionHandler.getCurrentQuestionType();
-                if (type.equals("NUMBER")) {
-                    makeRangeVisable();
-                    rangeScreen();
-                } else if (type.equals("BUTTON")) {
-                    buttonScreen();         //default is 3 buttons
-                } else {                    //Also add logical options
-                    makeTerminalVisible();
-                    terminalScreen();
+
+                while (type.equals("OR")){
+                    ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
+                    String first = temp.get(0);
+                    questionHandler.giveInput(first);
+                    type = questionHandler.getCurrentQuestionType();
+                }
+                switch (type) {
+                    case "NUMBER":
+                        makeRangeVisible();
+                        rangeScreen();
+                        break;
+                    case "BUTTON":
+                        buttonScreen();
+                        break;
+                    default:
+                        makeTerminalVisible();
+                        terminalScreen();
+                        break;
                 }
             }
         });
@@ -166,7 +183,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 questionHandler.giveInput("yes");
                 String type = questionHandler.getCurrentQuestionType();
                 if (type.equals("NUMBER")) {
-                    makeRangeVisable();
+                    makeRangeVisible();
                     rangeScreen();
                 } else if (type.equals("BUTTON")) {
                     buttonScreen(3);         //default is 3 buttons
@@ -183,7 +200,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 questionHandler.giveInput("yes");
                 String type = questionHandler.getCurrentQuestionType();
                 if (type.equals("NUMBER")) {
-                    makeRangeVisable();
+                    makeRangeVisible();
                     rangeScreen();
                 } else if (type.equals("BUTTON")) {
                     buttonScreen(3);         //default is 3 buttons
@@ -200,7 +217,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 questionHandler.giveInput("yes");
                 String type = questionHandler.getCurrentQuestionType();
                 if (type.equals("NUMBER")) {
-                    makeRangeVisable();
+                    makeRangeVisible();
                     rangeScreen();
                 } else if (type.equals("BUTTON")) {
                     buttonScreen(3);         //default is 3 buttons
@@ -230,7 +247,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         spinnerResp = (String) parent.getItemAtPosition(position);
-        Log.e("Hello", spinnerResp);
+        //Log.e("Spinner Response", spinnerResp);
     }
 
     @Override
