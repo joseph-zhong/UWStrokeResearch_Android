@@ -1,6 +1,7 @@
 package com.stroke_trial_research.str;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,13 +41,17 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         List<Node> nodeList = jsonParser.getNodeList(this, bundle.getInt("ID"));
 
         setContentView(R.layout.combined_view);
+
         rangeView = (RelativeLayout) findViewById(R.id.rangeLayout);
         spinnerView = (RelativeLayout) findViewById(R.id.spinnerLayout);
         terminalView = (RelativeLayout) findViewById(R.id.terminalLayout);
         buttonView = (RelativeLayout) findViewById(R.id.buttonLayout);
 
+        questionBox = (TextView) findViewById(R.id.questionView);
         questionHandler = new QuestionHandler(nodeList);
         String type = questionHandler.getCurrentQuestionType();
+        questionBox.setText(type);
+
         while (type.equals("OR")){
             ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
             String first = temp.get(0);
@@ -102,9 +107,10 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
 
 
     private void rangeScreen() {
-        questionBox = (TextView) findViewById(R.id.questionView);
+        //questionBox = (TextView) findViewById(R.id.questionView);
         questionBox.setText(questionHandler.getCurrentQuestion());
-        questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
+        //questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
+
         editText = (EditText) findViewById(R.id.rangeTextBox);
         editText.setText("");
         rangeCont = (Button) findViewById(R.id.rangeContinue);
@@ -148,9 +154,9 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     }
 
     private void spinnerScreen() {
-        questionBox = (TextView) findViewById(R.id.questionViewS);
+        //questionBox = (TextView) findViewById(R.id.questionViewS);
         questionBox.setText(questionHandler.getCurrentQuestion());
-        questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
+        //questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
 
         List<String> list = questionHandler.getConnectingAnswers();
 
@@ -198,13 +204,16 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     }
 
     private void buttonScreen() {
-        questionBox = (TextView) findViewById(R.id.questionViewB);
+        //questionBox = (TextView) findViewById(R.id.questionViewB);
         questionBox.setText(questionHandler.getCurrentQuestion());
         //questionBox.setBackgroundColor(getResources().getColor(R.color.amethyst));
 
         yes = (Button) findViewById(R.id.yes);
+        yes.setBackgroundResource(R.drawable.yes_button);
         no = (Button) findViewById(R.id.no);
+        no.setBackgroundResource(R.drawable.no_button);
         unknown = (Button) findViewById(R.id.unknown);
+        unknown.setBackgroundResource(R.drawable.unknown_button);
 
 
         yes.setOnClickListener(new View.OnClickListener() {
@@ -294,9 +303,9 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     }
 
     private void terminalScreen(){
-        questionBox = (TextView) findViewById(R.id.questionViewT);
+        //questionBox = (TextView) findViewById(R.id.questionViewT);
         questionBox.setText(questionHandler.getCurrentQuestion());
-        questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
+
 
         history = (Button) findViewById(R.id.history);
 
