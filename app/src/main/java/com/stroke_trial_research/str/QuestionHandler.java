@@ -23,11 +23,13 @@ public class QuestionHandler {
     private Stack<String> history;
     private List<Node> nodes;
 
+
     public QuestionHandler(List<Node> nodes){
         this.nodes = nodes;
         this.history = new Stack<String>();
         //Set the start node as q002
         setCurrentNode("q001");
+
     }
 
     //Get the question of the current node the handler is observing in the tree
@@ -65,6 +67,7 @@ public class QuestionHandler {
 
     //Moves the current node to a new node depending on the input
     public String giveInput(String input){
+        Log.d("thing", "--- " + "intput" + this.currentQuestion.getType());
         switch(this.currentQuestion.getType()){
             case "NUMBER": //Requires number as an input
                 Map<Range, String> nextNumber = ((RangeNode) this.currentQuestion).getConnections();
@@ -85,13 +88,27 @@ public class QuestionHandler {
             case "BUTTON": //Requires yes/no input
                 Map<String, String> nextNodes = ((DiscreteNode) this.currentQuestion).getConnections();
 
+                 /*
+                Log.d("thing", "--- " + "enter");
+                //Map<String, String> nextNodes = ((DiscreteNode) this.currentQuestion).getConnections();
+                DiscreteNode disc = (DiscreteNode) this.currentQuestion;
+                Map<String, String> nextNodes = disc.getConnections();
+                Log.d("thing", nextNodes.toString())*/
+  
                 if(input.toLowerCase().equals("yes")){
+                    Log.d("thing", "--- " + "l");
                     setCurrentNode(nextNodes.get("yes"));
+                    Log.d("thing", "--- " + "leave");
                     return "You have answered yes";
                 }else if(input.toLowerCase().equals("no")) {
                     setCurrentNode(nextNodes.get("no"));
+                    Log.d("thing", "--- " + "leave");
                     return "You have answered no";
+                }else if(input.toLowerCase().equals("start")) {
+                    setCurrentNode(nextNodes.get("start"));
+                    Log.d("thing", "--- " + "leave");
                 }else {
+                    Log.d("thing", "--- " + "leave");
                     return "Please answer Yes or No";
                 }
             case "OR": //Requires quid of the question the user wants to answer
@@ -109,11 +126,9 @@ public class QuestionHandler {
 
     //Set the current node with the specified quid
     private void setCurrentNode(String QUID){
-        /*
-        for (Node node : this.nodes) {
-            Log.e(node.getQID(), node.getType());
-        }*/
+
         for(Node node : this.nodes){
+            Log.d("thing", node.getQuestion() + " " + node.getQID());
             if(node.getQID().equals(QUID)){
                 this.currentQuestion = node;
                 if(node.getType().equals("OR")) {

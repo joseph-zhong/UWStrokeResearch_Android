@@ -9,8 +9,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.R.*;
 
@@ -19,15 +23,49 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static com.stroke_trial_research.str.R.raw.stroke_demo;
 
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
 
-        setUpHome();
+
+
+
+
+        setContentView(R.layout.activity_tree_test);
+
+        JSONParser j = new JSONParser();
+        List<Node> n = j.getNodeList(getApplicationContext(), R.raw.stroke_demo_new);
+
+        Set<Node> set = new HashSet<>(n);
+        final QuestionHandler q = new QuestionHandler(set, j.getNodeTree(getApplicationContext(), R.raw.stroke_demo_new));
+        final TextView t = (TextView) findViewById(R.id.questionText);
+        final EditText edit = (EditText) findViewById(R.id.editText);
+        Button button = (Button) findViewById(R.id.button);
+
+        t.setText(q.getCurrentQuestion());
+
+        button.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+                q.giveInput(edit.getText().toString().trim().toLowerCase());
+                t.setText(q.getCurrentQuestion());
+            }
+        });
+
+
+
+
+
+        //setUpHome();
     }
 
     private void setUpHome() {

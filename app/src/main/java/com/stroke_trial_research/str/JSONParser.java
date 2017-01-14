@@ -67,6 +67,7 @@ public class JSONParser {
             //Iterate through each node in the file
             while (keys.hasNext()) {
                 String name = keys.next();
+              
                 Log.d("DEBUG", name);                                   //name
 
                 JSONObject jnode = root.getJSONObject(name);
@@ -86,7 +87,7 @@ public class JSONParser {
                 } else {
                     question = jnode.getString("message");
                 }
-
+                Log.d("thing", name + " " + type);
                 switch (type) {
                     case "NUMBER": //REQUIRES USER INPUT OF NUMBER
                         RangeNode rn = new RangeNode(options.length(), name, question);
