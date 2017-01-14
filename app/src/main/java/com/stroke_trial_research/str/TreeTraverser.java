@@ -47,6 +47,10 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         terminalView = (RelativeLayout) findViewById(R.id.terminalLayout);
         buttonView = (RelativeLayout) findViewById(R.id.buttonLayout);
 
+        yes = (Button) findViewById(R.id.yes);
+        no = (Button) findViewById(R.id.no);
+        unknown = (Button) findViewById(R.id.unknown);
+
         questionBox = (TextView) findViewById(R.id.questionView);
         questionHandler = new QuestionHandler(nodeList);
         String type = questionHandler.getCurrentQuestionType();
@@ -207,14 +211,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         //questionBox = (TextView) findViewById(R.id.questionViewB);
         questionBox.setText(questionHandler.getCurrentQuestion());
         //questionBox.setBackgroundColor(getResources().getColor(R.color.amethyst));
-
-        yes = (Button) findViewById(R.id.yes);
-        yes.setBackgroundResource(R.drawable.yes_button);
-        no = (Button) findViewById(R.id.no);
-        no.setBackgroundResource(R.drawable.no_button);
-        unknown = (Button) findViewById(R.id.unknown);
-        unknown.setBackgroundResource(R.drawable.unknown_button);
-
 
         yes.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,7 +14,9 @@
   - Main UI (Question/Input)
     - https://github.com/kaelaela/VerticalViewPager
   - Contact
-
+  - Set up back button (Joseph)
+  - Set up History functionality (Kieran)
+  - Fix Constants (James)
 ### Architecture
 
 - Backend Integration

@@ -35,12 +35,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-
-
-
-
+        /*
         setContentView(R.layout.activity_tree_test);
 
         JSONParser j = new JSONParser();
@@ -59,13 +56,9 @@ public class MainActivity extends Activity {
                 q.giveInput(edit.getText().toString().trim().toLowerCase());
                 t.setText(q.getCurrentQuestion());
             }
-        });
+        }); */
 
-
-
-
-
-        //setUpHome();
+        setUpHome();
     }
 
     private void setUpHome() {
