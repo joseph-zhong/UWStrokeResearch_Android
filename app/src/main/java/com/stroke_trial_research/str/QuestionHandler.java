@@ -5,6 +5,8 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
@@ -19,12 +21,15 @@ import java.util.Stack;
 public class QuestionHandler {
     private Node currentQuestion;
     private Stack<String> history;
-    private Set<Node> nodes;
+    private List<Node> nodes;
 
-    public QuestionHandler(Set<Node> nodes, Node currentQuestion){
+
+    public QuestionHandler(List<Node> nodes){
         this.nodes = nodes;
         this.history = new Stack<String>();
-        setCurrentNode(currentQuestion.getQID());
+        //Set the start node as q002
+        setCurrentNode("q001");
+
     }
 
     //Get the question of the current node the handler is observing in the tree
@@ -65,7 +70,6 @@ public class QuestionHandler {
         Log.d("thing", "--- " + "intput" + this.currentQuestion.getType());
         switch(this.currentQuestion.getType()){
             case "NUMBER": //Requires number as an input
-                Log.d("message", "first question asdfasdfasdfasdf" );
                 Map<Range, String> nextNumber = ((RangeNode) this.currentQuestion).getConnections();
                 int answer = 0;
                 try {
@@ -74,17 +78,23 @@ public class QuestionHandler {
                     return "Please insert numeric value";
                 }
                 for(Range range : nextNumber.keySet()){
+
                     if(range.lower <= answer && answer < range.upper){
+                        Log.e("connections", nextNumber.get(range));
                         setCurrentNode(nextNumber.get(range));
                     }
                 }
                 return "Please insert numeric value inside the specified range";
             case "BUTTON": //Requires yes/no input
+                Map<String, String> nextNodes = ((DiscreteNode) this.currentQuestion).getConnections();
+
+                 /*
                 Log.d("thing", "--- " + "enter");
                 //Map<String, String> nextNodes = ((DiscreteNode) this.currentQuestion).getConnections();
                 DiscreteNode disc = (DiscreteNode) this.currentQuestion;
                 Map<String, String> nextNodes = disc.getConnections();
-                Log.d("thing", nextNodes.toString());
+                Log.d("thing", nextNodes.toString())*/
+  
                 if(input.toLowerCase().equals("yes")){
                     Log.d("thing", "--- " + "l");
                     setCurrentNode(nextNodes.get("yes"));
@@ -116,8 +126,7 @@ public class QuestionHandler {
 
     //Set the current node with the specified quid
     private void setCurrentNode(String QUID){
-        Log.d("asdfdsa", "set curr node");
-        Log.d("asdfdsa", QUID);
+
         for(Node node : this.nodes){
             Log.d("thing", node.getQuestion() + " " + node.getQID());
             if(node.getQID().equals(QUID)){
@@ -135,5 +144,57 @@ public class QuestionHandler {
     //Get quid's of a logic node
     private String getOrQuestions(LogicNode n){
         return n.getFirst() + " " + n.getSecond();
+    }
+
+    public List<String> getConnectingNodes(){
+        String type = getCurrentQuestionType();
+        List<String> list = new ArrayList<String>();
+        switch (type) {
+            case "NUMBER":
+                Map<Range, String> mapR = ((RangeNode) this.currentQuestion).getConnections();
+                for( String s : mapR.values()){
+                    list.add(s);
+                }
+                return list;
+            case "BUTTON":
+                Map<String, String> mapB = ((DiscreteNode) this.currentQuestion).getConnections();
+                for (String s: mapB.values()){
+                    list.add(s);
+                }
+                return list;
+            case "OR":
+                list.add(((LogicNode) this.currentQuestion).getFirst());
+                list.add(((LogicNode) this.currentQuestion).getSecond());
+                return list;
+            default:
+                break;
+        }
+        return null;
+    }
+
+    public List<String> getConnectingAnswers() {
+        String type = getCurrentQuestionType();
+        List<String> list = new ArrayList<String>();
+        switch (type) {
+            case "NUMBER":
+                Map<Range, String> mapR = ((RangeNode) this.currentQuestion).getConnections();
+                for(Range r : mapR.keySet()){
+                    list.add(r.toString());
+                }
+                return list;
+            case "BUTTON":
+                Map<String, String> mapB = ((DiscreteNode) this.currentQuestion).getConnections();
+                for (String s: mapB.keySet()){
+                    list.add(s);
+                }
+                return list;
+            case "OR":
+                list.add(((LogicNode) this.currentQuestion).getFirst());
+                list.add(((LogicNode) this.currentQuestion).getSecond());
+                return list;
+            default:
+                break;
+        }
+        return null;
     }
 }

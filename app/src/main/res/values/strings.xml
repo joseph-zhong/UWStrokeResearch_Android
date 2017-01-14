@@ -6,5 +6,7 @@
     <string name="client">Client</string>
     <string name="admin">Admin</string>
     <string name="client_list">Client List</string>
+    <string name="enter_num">Please Enter a Value</string>
+    <string name="tree_traverser">Tree Traverser</string>
 
 </resources>
