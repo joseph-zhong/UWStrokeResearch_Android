@@ -8,5 +8,10 @@
     <string name="client_list">Client List</string>
     <string name="enter_num">Please Enter a Value</string>
     <string name="tree_traverser">Tree Traverser</string>
+    <string name="cont">Continue</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="unknown">Unknown</string>
+    <string name="history">History</string>
 
 </resources>

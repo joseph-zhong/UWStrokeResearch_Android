@@ -30,7 +30,8 @@
             android:layout_marginBottom="180dp"/>
 
         <Button
-            android:text="Continue"
+            android:text="@string/cont"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spinnerContinue"
@@ -49,7 +50,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="Unknown"
+            android:text="@string/unknown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/unknown"
@@ -59,7 +60,7 @@
             android:layout_centerHorizontal="true" />
 
         <Button
-            android:text="Yes"
+            android:text="@string/yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/yes"
@@ -70,7 +71,7 @@
             android:layout_marginLeft="20dp"/>
 
         <Button
-            android:text="No"
+            android:text="@string/no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/no"
@@ -100,7 +101,8 @@
             android:layout_alignParentLeft="true" />
 
         <Button
-            android:text="Continue"
+            android:text="@string/cont"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rangeContinue"
@@ -117,10 +119,11 @@
     android:layout_height="match_parent">
 
         <Button
-            android:text="History"
+            android:text="@string/history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/history"
+            android:textColor="@color/white"
             android:background="@drawable/round_rect"
             android:layout_marginBottom="83dp"
             android:layout_alignParentBottom="true"
