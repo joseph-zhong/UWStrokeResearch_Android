@@ -17,14 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ClientListActivity"
-            android:parentActivityName="com.stroke_trial_research.str.MainActivity"
-            android:label="@string/client_list">
+        <activity
+            android:name=".ClientListActivity"
+            android:label="@string/client_list"
+            android:parentActivityName=".MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.stroke_trial_research.str.MainActivity"/>
+                android:value="com.stroke_trial_research.str.MainActivity" />
         </activity>
         <activity
             android:name=".TreeTraverser"
@@ -37,7 +38,9 @@
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.stroke_trial_research.str.ClientListActivity"/>
+                android:value="com.stroke_trial_research.str.ClientListActivity" />
         </activity>
+        <activity android:name=".HistoryList"></activity>
     </application>
+
 </manifest>

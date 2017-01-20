@@ -1,6 +1,7 @@
 package com.stroke_trial_research.str;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +14,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 
 /**
@@ -305,10 +308,16 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
 
         history = (Button) findViewById(R.id.history);
 
+        final Intent intent = new Intent(this, HistoryList.class);
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                List<String> questions = new Stack<String>();
+                Stack<String> s = questionHandler.getQuestionHistory();
+
+                intent.putExtra("Quest", (Serializable) (List<String>) s);
+                startActivity(intent);
             }
         });
     }
