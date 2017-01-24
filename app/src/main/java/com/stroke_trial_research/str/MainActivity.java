@@ -37,9 +37,31 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
         setContentView(R.layout.activity_main);
+        setUpHome(); */
 
-        setUpHome();
+        setContentView(R.layout.test_view);
+        setUpTestInterface();
+    }
+
+    private void setUpTestInterface() {
+        final Button beginbutton = (Button) findViewById(R.id.beginButton);
+
+        beginbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                int id = R.raw.stroke_demo_new;
+                bundle.putInt("ID",id);
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), TreeTraverser.class); //perhaps wrong context
+                // Initialize Tree and Tree handler then begin traversal.
+                //startActivity(intent, bundle);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setUpHome() {

@@ -13,5 +13,6 @@
     <string name="no">No</string>
     <string name="unknown">Unknown</string>
     <string name="history">History</string>
+    <string name="title">Clinical Research Trials Available for Subject Enrollment</string>
 
 </resources>
