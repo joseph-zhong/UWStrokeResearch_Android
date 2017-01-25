@@ -81,7 +81,7 @@ public class QuestionHandler {
 
                     if(range.lower <= answer && answer < range.upper){
                         Log.e("connections", nextNumber.get(range));
-                        setCurrentNode(nextNumber.get(range));
+                        setCurrentNode(nextNumber.get(range), input);
                     }
                 }
                 return "Please insert numeric value inside the specified range";
@@ -97,15 +97,15 @@ public class QuestionHandler {
   
                 if(input.toLowerCase().equals("yes")){
                     Log.d("thing", "--- " + "l");
-                    setCurrentNode(nextNodes.get("yes"));
+                    setCurrentNode(nextNodes.get("yes"), input);
                     Log.d("thing", "--- " + "leave");
                     return "You have answered yes";
                 }else if(input.toLowerCase().equals("no")) {
-                    setCurrentNode(nextNodes.get("no"));
+                    setCurrentNode(nextNodes.get("no"), input);
                     Log.d("thing", "--- " + "leave");
                     return "You have answered no";
                 }else if(input.toLowerCase().equals("start")) {
-                    setCurrentNode(nextNodes.get("start"));
+                    setCurrentNode(nextNodes.get("start"), input);
                     Log.d("thing", "--- " + "leave");
                 }else {
                     Log.d("thing", "--- " + "leave");
@@ -136,6 +136,22 @@ public class QuestionHandler {
                     this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)));
                 }else{
                     this.history.push(this.currentQuestion.getQuestion());
+                }
+            }
+        }
+    }
+
+    private void setCurrentNode(String QUID, String input){
+
+        for(Node node : this.nodes){
+            Log.d("thing", node.getQuestion() + " " + node.getQID());
+            if(node.getQID().equals(QUID)){
+                this.currentQuestion = node;
+                if(node.getType().equals("OR")) {
+                    String s = getOrQuestions((LogicNode) node);
+                    this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)) + " " + input);
+                }else{
+                    this.history.push(this.currentQuestion.getQuestion() + " " + input);
                 }
             }
         }

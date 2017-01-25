@@ -1,15 +1,24 @@
+#old version of the file kept for records.
+#updated 1/24/2017
 {
+	"q000": {
+		"type": "BUTTON",
+		"question": "Ready?",
+		"options": [
+			{"type": "EQUAL", "value":"start", "next": "q001"}
+		]
+	},
 	"q001": {
 		"type": "BUTTON",
-		"question": "Stroke Type",
+		"question": "ISCHEMIC?",
 		"options": [
-			{"type": "EQUAL", "value": "Ischemic", "next": "q002"},
-			{"type": "EQUAL", "value": "Hemoragic", "next": "q003"}
+			{"type": "EQUAL", "value": "yes", "next": "q002"},
+			{"type": "EQUAL", "value": "no", "next": "q003"}
 		]
 	},
 	"q002": {
 		"type": "NUMBER",
-		"question": "Hours Since Last Known Normal?",
+		"question": "Last known",
 		"options": [
 			{"type": "RANGE", "lower": 0, "upper": 9, "next": "q008"},
 			{"type": "RANGE", "lower": 9, "upper": 13, "next": "q011"},
@@ -18,15 +27,20 @@
 		]
 	},
 	"q003": {
-		"type": "NUMBER",
-        		"question": "Hours Since Last Known Normal?",
-        		"options": [
-        			{"type": "RANGE", "lower": 0, "upper": 24, "next": "q005"},
-        			{"type": "RANGE", "lower": 24, "upper": 100, "next": "r000"}
-        		]
+		"type": "BUTTON",
+		"question": "HERMORRHAGIC?",
+		"options": [
+			{"type": "EQUAL", "value": "yes", "next": "q004"},
+			{"type": "EQUAL", "value": "no", "next": "r000"}
+		]
 	},
 	"q004": {
-
+		"type": "NUMBER",
+		"question": "Last known",
+		"options": [
+			{"type": "RANGE", "lower": 0, "upper": 24, "next": "q005"},
+			{"type": "RANGE", "lower": 24, "upper": 100, "next": "r000"}
+		]
 	},
 	"q005": {
 		"type": "BUTTON",
@@ -62,7 +76,7 @@
 		"question": "TIA with ABCD2 >= 4",
 		"options": [
 			{"type": "EQUAL", "value": "yes", "next": "r002"},
-			{"type": "EQUAL", "value": "no", "next": "q010"} 
+			{"type": "EQUAL", "value": "no", "next": "q010"}
 		]
 	},
 	"q010": {

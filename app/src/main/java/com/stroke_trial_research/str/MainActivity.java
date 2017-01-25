@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         setUpHome(); */
 
+        //Only for showcasing App's potential
         setContentView(R.layout.test_view);
         setUpTestInterface();
     }
