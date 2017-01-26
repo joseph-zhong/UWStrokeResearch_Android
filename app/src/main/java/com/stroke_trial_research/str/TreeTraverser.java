@@ -246,7 +246,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                questionHandler.giveInput("yes");
+                questionHandler.giveInput("no");
                 String type = questionHandler.getCurrentQuestionType();
                 while (type.equals("OR")) {
                     ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
@@ -316,7 +316,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 List<String> questions = new Stack<String>();
                 Stack<String> s = questionHandler.getQuestionHistory();
 
-                intent.putExtra("Quest", (Serializable) (List<String>) s);
+                intent.putExtra("Quest", (Serializable) s);
                 startActivity(intent);
             }
         });

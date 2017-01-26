@@ -28,7 +28,7 @@ public class QuestionHandler {
         this.nodes = nodes;
         this.history = new Stack<String>();
         //Set the start node as q002
-        setCurrentNode("q001");
+        setCurrentNode("q001", null);
 
     }
 
@@ -67,7 +67,8 @@ public class QuestionHandler {
 
     //Moves the current node to a new node depending on the input
     public String giveInput(String input){
-        Log.d("thing", "--- " + "intput" + this.currentQuestion.getType());
+        Log.d("thing", "--- " + "intput type " + this.currentQuestion.getType());
+        Log.d("thing", "--- " + "intput " + input);
         switch(this.currentQuestion.getType()){
             case "NUMBER": //Requires number as an input
                 Map<Range, String> nextNumber = ((RangeNode) this.currentQuestion).getConnections();
@@ -94,7 +95,17 @@ public class QuestionHandler {
                 DiscreteNode disc = (DiscreteNode) this.currentQuestion;
                 Map<String, String> nextNodes = disc.getConnections();
                 Log.d("thing", nextNodes.toString())*/
-  
+
+                //Works Better with buttons of N size and spinners
+                try {
+                    String next = nextNodes.get(input);
+                    setCurrentNode(next, input);
+                    return "You have answered " + input;
+                } catch(IllegalArgumentException e) {
+                    e.printStackTrace();
+                    return "Illegal Key";
+                }
+                /*
                 if(input.toLowerCase().equals("yes")){
                     Log.d("thing", "--- " + "l");
                     setCurrentNode(nextNodes.get("yes"), input);
@@ -110,7 +121,7 @@ public class QuestionHandler {
                 }else {
                     Log.d("thing", "--- " + "leave");
                     return "Please answer Yes or No";
-                }
+                }*/
             case "OR": //Requires quid of the question the user wants to answer
                 setCurrentNode(input);
                 return "";
@@ -131,6 +142,7 @@ public class QuestionHandler {
             Log.d("thing", node.getQuestion() + " " + node.getQID());
             if(node.getQID().equals(QUID)){
                 this.currentQuestion = node;
+
                 if(node.getType().equals("OR")) {
                     String s = getOrQuestions((LogicNode) node);
                     this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)));
@@ -142,17 +154,18 @@ public class QuestionHandler {
     }
 
     private void setCurrentNode(String QUID, String input){
+        if (this.currentQuestion != null) {
+            if(this.currentQuestion.getType().equals("OR")) {
+                String s = getOrQuestions((LogicNode) this.currentQuestion);
+                this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)) + " A: " + input);
+            }else{
+                this.history.push("Q: " + this.currentQuestion.getQuestion() + " A: " + input);
+            }
+        }
 
         for(Node node : this.nodes){
-            Log.d("thing", node.getQuestion() + " " + node.getQID());
             if(node.getQID().equals(QUID)){
                 this.currentQuestion = node;
-                if(node.getType().equals("OR")) {
-                    String s = getOrQuestions((LogicNode) node);
-                    this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)) + " " + input);
-                }else{
-                    this.history.push(this.currentQuestion.getQuestion() + " " + input);
-                }
             }
         }
     }
