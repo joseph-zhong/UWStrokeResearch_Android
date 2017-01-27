@@ -29,6 +29,7 @@
 		"question": "USELESS NODE",
 		"options": [
 			{"type": "EQUAL", "value": "yes", "next": "q004"},
+			{"type": "EQUAL", "value": "unknown", "next": "q004"},
 			{"type": "EQUAL", "value": "no", "next": "r000"}
 		]
 	},
@@ -45,6 +46,7 @@
 		"question": "NIHSS >= 6",
 		"options": [
 			{"type": "EQUAL", "value": "yes", "next": "q006"},
+			{"type": "EQUAL", "value": "unknown", "next": "q006"},
 			{"type": "EQUAL", "value": "no", "next": "r000"}
 		]
 	},
@@ -62,6 +64,7 @@
 		"question": "Age <= 80",
 		"options": [
 			{"type": "EQUAL", "value": "yes", "next": "r001"},
+			{"type": "EQUAL", "value": "unknown", "next": "r001"},
 			{"type": "EQUAL", "value": "no", "next": "r000"}
 		]
 	},
@@ -74,6 +77,7 @@
 		"question": "TIA with ABCD2 >= 4",
 		"options": [
 			{"type": "EQUAL", "value": "yes", "next": "r002"},
+			{"type": "EQUAL", "value": "unknown", "next": "r002"},
 			{"type": "EQUAL", "value": "no", "next": "q010"}
 		]
 	},

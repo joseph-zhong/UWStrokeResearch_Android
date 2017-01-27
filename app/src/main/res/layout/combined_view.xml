@@ -44,8 +44,48 @@
     </RelativeLayout>
 
     <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buttonLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:text="@string/unknown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/unknown"
+        android:background="@drawable/unknown_button"
+        android:layout_marginBottom="83dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yes"
+        android:background="@drawable/yes_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="83dp"
+        android:layout_toRightOf="@+id/unknown"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:text="@string/no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/no"
+        android:background="@drawable/no_button"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="83dp"
+        android:layout_toLeftOf="@+id/unknown"
+        android:layout_marginRight="20dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/buttonLayout"
+        android:id="@+id/twoButtonLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -53,9 +93,10 @@
             android:text="@string/unknown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/unknown"
+            android:id="@+id/left"
             android:background="@drawable/unknown_button"
             android:layout_marginBottom="83dp"
+            android:layout_toLeftOf="@+id/right"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
@@ -63,23 +104,11 @@
             android:text="@string/yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/yes"
-            android:background="@drawable/yes_button"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="83dp"
-            android:layout_toRightOf="@+id/unknown"
-            android:layout_marginLeft="20dp"/>
-
-        <Button
-            android:text="@string/no"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/no"
+            android:id="@+id/right"
             android:background="@drawable/no_button"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="83dp"
-            android:layout_toLeftOf="@+id/unknown"
-            android:layout_marginRight="20dp"/>
+            android:layout_toRightOf="@+id/left" />
 
 
     </RelativeLayout>

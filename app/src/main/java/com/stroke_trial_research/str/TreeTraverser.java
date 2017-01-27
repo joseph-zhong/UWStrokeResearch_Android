@@ -31,8 +31,9 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     private QuestionHandler questionHandler;
     private TextView questionBox;
     private EditText editText;
-    private Button rangeCont, spinnerCont, history, yes, no, unknown;
-    private RelativeLayout rangeView, spinnerView, terminalView, buttonView;
+    private Button yes, no, unknown, left, right;
+    private  RelativeLayout rangeView, spinnerView,
+            terminalView, buttonView, twoButtonView, currentView;
     private Spinner buttonSpinner;
     private String spinnerResp;
 
@@ -41,6 +42,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
         JSONParser jsonParser = new JSONParser();
+        //Grab the Node List
         List<Node> nodeList = jsonParser.getNodeList(this, bundle.getInt("ID"));
 
         setContentView(R.layout.combined_view);
@@ -49,11 +51,24 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         spinnerView = (RelativeLayout) findViewById(R.id.spinnerLayout);
         terminalView = (RelativeLayout) findViewById(R.id.terminalLayout);
         buttonView = (RelativeLayout) findViewById(R.id.buttonLayout);
+        twoButtonView = (RelativeLayout) findViewById(R.id.twoButtonLayout);
 
-        yes = (Button) findViewById(R.id.yes);
-        no = (Button) findViewById(R.id.no);
-        unknown = (Button) findViewById(R.id.unknown);
+        rangeView.setVisibility(View.GONE);
+        spinnerView.setVisibility(View.GONE);
+        terminalView.setVisibility(View.GONE);
+        buttonView.setVisibility(View.GONE);
+        twoButtonView.setVisibility(View.GONE);
 
+
+        //DEBUG- change
+        currentView = spinnerView;
+
+        //Initialize all components and listeners
+        buttonScreen();
+        spinnerScreen();
+        rangeScreen();
+
+        //Box For displaying the question
         questionBox = (TextView) findViewById(R.id.questionView);
         questionHandler = new QuestionHandler(nodeList);
         String type = questionHandler.getCurrentQuestionType();
@@ -67,60 +82,37 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         }
         if (type.equals("NUMBER")) {
             //intial screen is a number view
-            makeRangeVisible();
+            switchView(rangeView);
             rangeScreen();
         } else if (type.equals("BUTTON")) {
             //intial screen is a button view
-            if (questionHandler.getConnectingAnswers().contains("yes")) {
-                makeButtonVisible();
-                buttonScreen();
+            if (questionHandler.getConnectingAnswers().size() == 3) {
+                switchView(buttonView);
+                questionBox.setText(questionHandler.getCurrentQuestion());
             } else {
-                makeSpinnerVisible();
-                spinnerScreen();
+                switchView(spinnerView);
+                initSpinnerResults();
             }
         } else {
-            makeTerminalVisible();
+            switchView(terminalView);
             terminalScreen();
         }
     }
 
-    private void makeRangeVisible(){
-        spinnerView.setVisibility(View.GONE);
-        terminalView.setVisibility(View.GONE);
-        buttonView.setVisibility(View.GONE);
-        rangeView.setVisibility(View.VISIBLE);
+    private void switchView (View newV) {
+        this.currentView.setVisibility(View.GONE);
+        newV.setVisibility(View.VISIBLE);
+
+        //TODO Assert type
+        this.currentView = (RelativeLayout) newV;
     }
 
-    private void makeSpinnerVisible(){
-        terminalView.setVisibility(View.GONE);
-        rangeView.setVisibility(View.GONE);
-        buttonView.setVisibility(View.GONE);
-        spinnerView.setVisibility(View.VISIBLE);
-    }
-
-    private void makeTerminalVisible(){
-        spinnerView.setVisibility(View.GONE);
-        rangeView.setVisibility(View.GONE);
-        buttonView.setVisibility(View.GONE);
-        terminalView.setVisibility(View.VISIBLE);
-    }
-
-    private void makeButtonVisible() {
-        spinnerView.setVisibility(View.GONE);
-        rangeView.setVisibility(View.GONE);
-        terminalView.setVisibility(View.GONE);
-        buttonView.setVisibility(View.VISIBLE);
-    }
-
-
+    //Initialize
     private void rangeScreen() {
-        //questionBox = (TextView) findViewById(R.id.questionView);
-        questionBox.setText(questionHandler.getCurrentQuestion());
-        //questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
+        final Button rangeCont = (Button) findViewById(R.id.rangeContinue);
 
         editText = (EditText) findViewById(R.id.rangeTextBox);
         editText.setText("");
-        rangeCont = (Button) findViewById(R.id.rangeContinue);
 
         rangeCont.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,19 +131,19 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 }
                 switch (type) {
                     case "NUMBER":
-                        rangeScreen();
+                        questionBox.setText(questionHandler.getCurrentQuestion());
                         break;
                     case "BUTTON":
-                        if (questionHandler.getConnectingAnswers().contains("yes")) {
-                            makeButtonVisible();
-                            buttonScreen();
+                        if (questionHandler.getConnectingAnswers().size() == 3) {
+                            switchView(buttonView);
+                            questionBox.setText(questionHandler.getCurrentQuestion());
                         } else {
-                            makeSpinnerVisible();
-                            spinnerScreen();
+                            switchView(spinnerView);
+                            initSpinnerResults();
                         }
                         break;
                     default:
-                        makeTerminalVisible();
+                        switchView(terminalView);
                         terminalScreen();
                         break;
                 }
@@ -160,21 +152,10 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         });
     }
 
+    //Initialize spinner listeners
     private void spinnerScreen() {
-        //questionBox = (TextView) findViewById(R.id.questionViewS);
-        questionBox.setText(questionHandler.getCurrentQuestion());
-        //questionBox.setBackgroundColor(getResources().getColor(R.color.silver));
-
-        List<String> list = questionHandler.getConnectingAnswers();
-
         buttonSpinner = (Spinner) findViewById(R.id.buttonSpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        buttonSpinner.setAdapter(adapter);
-
-
-        buttonSpinner.setOnItemSelectedListener(this);
-        spinnerCont = (Button) findViewById(R.id.spinnerContinue);
+        final Button spinnerCont = (Button) findViewById(R.id.spinnerContinue);
 
         spinnerCont.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,19 +171,19 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 }
                 switch (type) {
                     case "NUMBER":
-                        makeRangeVisible();
-                        rangeScreen();
+                        switchView(rangeView);
+                        questionBox.setText(questionHandler.getCurrentQuestion());
                         break;
                     case "BUTTON":
-                        if (questionHandler.getConnectingAnswers().contains("yes")) {
-                            makeButtonVisible();
-                            buttonScreen();
+                        if (questionHandler.getConnectingAnswers().size() == 3) {
+                            switchView(buttonView);
+                            questionBox.setText(questionHandler.getCurrentQuestion());
                         } else {
-                            spinnerScreen();
+                            initSpinnerResults();
                         }
                         break;
                     default:
-                        makeTerminalVisible();
+                        switchView(terminalView);
                         terminalScreen();
                         break;
                 }
@@ -210,10 +191,11 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         });
     }
 
+    //initialize Button Listeners
     private void buttonScreen() {
-        //questionBox = (TextView) findViewById(R.id.questionViewB);
-        questionBox.setText(questionHandler.getCurrentQuestion());
-        //questionBox.setBackgroundColor(getResources().getColor(R.color.amethyst));
+        yes = (Button) findViewById(R.id.yes);
+        no = (Button) findViewById(R.id.no);
+        unknown = (Button) findViewById(R.id.unknown);
 
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,17 +209,17 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                     type = questionHandler.getCurrentQuestionType();
                 }
                 if (type.equals("NUMBER")) {
-                    makeRangeVisible();
-                    rangeScreen();
+                    switchView(rangeView);
+                    questionBox.setText(questionHandler.getCurrentQuestion());
                 } else if (type.equals("BUTTON")) {
-                    if (questionHandler.getConnectingAnswers().contains("yes")) {
-                        buttonScreen();
+                    if (questionHandler.getConnectingAnswers().size() == 3) {
+                        questionBox.setText(questionHandler.getCurrentQuestion());
                     } else {
-                        makeSpinnerVisible();
-                        spinnerScreen();
+                        switchView(spinnerView);
+                        initSpinnerResults();
                     }
                 } else {                    //Also add logical options
-                    makeTerminalVisible();
+                    switchView(terminalView);
                     terminalScreen();
                 }
             }
@@ -255,17 +237,17 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                     type = questionHandler.getCurrentQuestionType();
                 }
                 if (type.equals("NUMBER")) {
-                    makeRangeVisible();
-                    rangeScreen();
+                    switchView(rangeView);
+                    questionBox.setText(questionHandler.getCurrentQuestion());
                 } else if (type.equals("BUTTON")) {
-                    if (questionHandler.getConnectingAnswers().contains("yes")) {
-                        buttonScreen();
+                    if (questionHandler.getConnectingAnswers().size() == 3) {
+                        questionBox.setText(questionHandler.getCurrentQuestion());
                     } else {
-                        makeSpinnerVisible();
-                        spinnerScreen();
+                        switchView(spinnerView);
+                        initSpinnerResults();
                     }
                 } else {                    //Also add logical options
-                    makeTerminalVisible();
+                    switchView(terminalView);
                     terminalScreen();
                 }
             }
@@ -283,30 +265,42 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                     type = questionHandler.getCurrentQuestionType();
                 }
                 if (type.equals("NUMBER")) {
-                    makeRangeVisible();
-                    rangeScreen();
+                    switchView(rangeView);
+                    questionBox.setText(questionHandler.getCurrentQuestion());
                 } else if (type.equals("BUTTON")) {
-                    if (questionHandler.getConnectingAnswers().contains("yes")) {
-                        buttonScreen();
+                    if (questionHandler.getConnectingAnswers().size() == 3) {
+                        questionBox.setText(questionHandler.getCurrentQuestion());
                     } else {
-                        makeSpinnerVisible();
-                        spinnerScreen();
+                        switchView(spinnerView);
+                        initSpinnerResults();
                     }
 
                 } else {                    //Also add logical options
-                    makeTerminalVisible();
+                    switchView(terminalView);
                     terminalScreen();
                 }
             }
         });
     }
 
+    private void initSpinnerResults() {
+        questionBox.setText(questionHandler.getCurrentQuestion());
+        List<String> list = questionHandler.getConnectingAnswers();
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        buttonSpinner.setAdapter(adapter);
+
+        buttonSpinner.setOnItemSelectedListener(this);
+    }
+
     private void terminalScreen(){
-        //questionBox = (TextView) findViewById(R.id.questionViewT);
+
         questionBox.setText(questionHandler.getCurrentQuestion());
 
 
-        history = (Button) findViewById(R.id.history);
+        final Button history = (Button) findViewById(R.id.history);
 
         final Intent intent = new Intent(this, HistoryList.class);
         history.setOnClickListener(new View.OnClickListener() {
@@ -325,7 +319,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         spinnerResp = (String) parent.getItemAtPosition(position);
-        //Log.e("Spinner Response", spinnerResp);
     }
 
     @Override
