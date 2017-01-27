@@ -96,7 +96,7 @@
             android:id="@+id/left"
             android:background="@drawable/unknown_button"
             android:layout_marginBottom="83dp"
-            android:layout_toLeftOf="@+id/right"
+
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
