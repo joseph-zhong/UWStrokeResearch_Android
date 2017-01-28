@@ -3,6 +3,85 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/historyLayout"
+        android:visibility="invisible">
+
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/historyButtonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="@string/unknown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/historyUnknown"
+                android:background="@drawable/unknown_button"
+                android:layout_marginBottom="83dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:text="@string/yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/historyYes"
+                android:background="@drawable/yes_button"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="83dp"
+                android:layout_toRightOf="@+id/historyUnknown"
+                android:layout_marginLeft="20dp"/>
+
+            <Button
+                android:text="@string/no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/historyNo"
+                android:background="@drawable/no_button"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="83dp"
+                android:layout_toLeftOf="@+id/historyUnknown"
+                android:layout_marginRight="20dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/historyTwoButtonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="@string/unknown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/historyLeft"
+                android:background="@drawable/unknown_button"
+                android:layout_marginBottom="83dp"
+
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:text="@string/yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/historyRight"
+                android:background="@drawable/no_button"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="83dp"
+                android:layout_toRightOf="@+id/historyLeft" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
