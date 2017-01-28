@@ -1,10 +1,12 @@
 package com.stroke_trial_research.str;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -85,6 +87,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             //intial screen is a number view
             switchView(rangeView);
             rangeScreen();
+            openKeyboard();
         } else if (type.equals("BUTTON")) {
             //intial screen is a button view
             int size = questionHandler.getConnectingAnswers().size();
@@ -184,6 +187,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                     case "NUMBER":
                         switchView(rangeView);
                         questionBox.setText(questionHandler.getCurrentQuestion());
+                        openKeyboard();
                         break;
                     case "BUTTON":
                         int size = questionHandler.getConnectingAnswers().size();
@@ -228,6 +232,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 if (type.equals("NUMBER")) {
                     switchView(rangeView);
                     questionBox.setText(questionHandler.getCurrentQuestion());
+                    openKeyboard();
                 } else if (type.equals("BUTTON")) {
                     int size = questionHandler.getConnectingAnswers().size();
 
@@ -262,6 +267,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 if (type.equals("NUMBER")) {
                     switchView(rangeView);
                     questionBox.setText(questionHandler.getCurrentQuestion());
+                    openKeyboard();
                 } else if (type.equals("BUTTON")) {
                     int size = questionHandler.getConnectingAnswers().size();
 
@@ -296,6 +302,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 if (type.equals("NUMBER")) {
                     switchView(rangeView);
                     questionBox.setText(questionHandler.getCurrentQuestion());
+                    openKeyboard();
                 } else if (type.equals("BUTTON")) {
                     int size = questionHandler.getConnectingAnswers().size();
 
@@ -335,6 +342,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 if (type.equals("NUMBER")) {
                     switchView(rangeView);
                     questionBox.setText(questionHandler.getCurrentQuestion());
+                    openKeyboard();
                 } else if (type.equals("BUTTON")) {
                     int size = questionHandler.getConnectingAnswers().size();
 
@@ -369,6 +377,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 if (type.equals("NUMBER")) {
                     switchView(rangeView);
                     questionBox.setText(questionHandler.getCurrentQuestion());
+                    openKeyboard();
                 } else if (type.equals("BUTTON")) {
                     int size = questionHandler.getConnectingAnswers().size();
 
@@ -409,6 +418,13 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     }
 
     private void terminalScreen(){
+        terminalView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((InputMethodManager) getSystemService(TreeTraverser.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
+                        editText.getWindowToken(), 0);
+            }
+        });
 
         questionBox.setText(questionHandler.getCurrentQuestion());
 
@@ -437,5 +453,16 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         // TODO Write a case for if the user doesn't select anything to prevent blank submissions
+    }
+
+    private void openKeyboard() {
+        editText.requestFocus();
+        editText.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).showSoftInput(
+                        editText, InputMethodManager.SHOW_IMPLICIT);
+            }
+        }, 100);
     }
 }
