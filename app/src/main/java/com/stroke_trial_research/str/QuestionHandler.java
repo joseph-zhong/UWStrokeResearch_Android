@@ -67,8 +67,8 @@ public class QuestionHandler {
 
     //Moves the current node to a new node depending on the input
     public String giveInput(String input){
-        Log.d("thing", "--- " + "intput type " + this.currentQuestion.getType());
-        Log.d("thing", "--- " + "intput " + input);
+        Log.d("thing", "--- " + "input type " + this.currentQuestion.getType());
+        Log.d("thing", "--- " + "input " + input);
         switch(this.currentQuestion.getType()){
             case "NUMBER": //Requires number as an input
                 Map<Range, String> nextNumber = ((RangeNode) this.currentQuestion).getConnections();
@@ -145,7 +145,8 @@ public class QuestionHandler {
 
                 if(node.getType().equals("OR")) {
                     String s = getOrQuestions((LogicNode) node);
-                    this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)));
+                    this.history.push(this.lookUpQuestion(s.substring(0, 4))
+                            + " or " + this.lookUpQuestion(s.substring(5)));
                 }else{
                     this.history.push(this.currentQuestion.getQuestion());
                 }

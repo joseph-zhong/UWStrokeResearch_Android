@@ -49,6 +49,8 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
 
         setContentView(R.layout.combined_view);
 
+//        historyView = (RelativeLayout) findViewById(R.id.)
+
         rangeView = (RelativeLayout) findViewById(R.id.rangeLayout);
         spinnerView = (RelativeLayout) findViewById(R.id.spinnerLayout);
         terminalView = (RelativeLayout) findViewById(R.id.terminalLayout);
