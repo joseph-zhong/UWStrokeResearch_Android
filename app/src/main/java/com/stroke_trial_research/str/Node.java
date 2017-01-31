@@ -13,6 +13,13 @@ import java.io.Serializable;
  */
 public abstract class Node implements Comparable<Node>, Serializable {
 
+    public static final String NUMBER_TYPE = "NUMBER";
+    public static final String BUTTON_TYPE = "BUTTON";
+    public static final String OR_TYPE = "OR";
+    public static final String RESULT_TYPE = "RESULT";
+
+    public static final String UNKNOWN_RESPONSE = "UNKNOWN";
+
     //Number of Nodes in the connections
     protected int connectNum;
 

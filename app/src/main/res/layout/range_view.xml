@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/questionView"
+        android:id="@+id/questionTextView"
         tools:background="@color/amethyst"
         android:textAlignment="center"
         android:textSize="24sp"

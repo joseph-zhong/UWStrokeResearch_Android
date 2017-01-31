@@ -7,51 +7,107 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="61dp"
-        android:id="@+id/historyLayout">
+        android:id="@+id/historyLayout"
+        android:alpha="0.8"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/historyQuestionTextView"
+            android:background="@android:color/transparent"
+            android:textSize="24sp"
+            android:text="@string/app_name"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="@dimen/main_margin"
+            android:alpha="0.8"
+            android:visibility="invisible" />
 
         <Button
             android:text="@string/unknown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/historyUnknown"
+            android:textColor="@color/white"
             android:background="@drawable/unknown_button"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="83dp"
+            android:alpha="0.8"
+            android:visibility="invisible" />
 
         <Button
             android:text="@string/yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/historyYes"
+            android:textColor="@color/white"
             android:background="@drawable/yes_button"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/historyUnknown"
             android:layout_toEndOf="@+id/historyUnknown"
             android:layout_marginLeft="18dp"
-            android:layout_marginStart="18dp" />
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="83dp"
+            android:alpha="0.8"
+            android:visibility="invisible" />
 
         <Button
             android:text="@string/no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/historyNo"
+            android:textColor="@color/white"
             android:background="@drawable/no_button"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/historyUnknown"
             android:layout_toStartOf="@+id/historyUnknown"
             android:layout_marginRight="19dp"
-            android:layout_marginEnd="19dp" />
+            android:layout_marginEnd="19dp"
+            android:layout_marginTop="@dimen/history_top_margin"
+            android:alpha="0.8"
+            android:visibility="invisible" />
+
+        <Button
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/historyRight"
+            android:background="@drawable/no_button"
+            android:textColor="@color/white"
+            android:alpha="0.8"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/main_margin"
+            android:layout_marginTop="@dimen/history_top_margin"
+            android:visibility="invisible" />
+
+        <Button
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/historyLeft"
+            android:background="@drawable/unknown_button"
+            android:textColor="@color/white"
+            android:alpha="0.8"
+            android:layout_marginTop="@dimen/history_top_margin"
+            android:layout_marginLeft="@dimen/main_margin"
+            android:layout_alignParentLeft="true"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:id="@+id/historyAnswer" />
 
     </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/questionView"
+        android:id="@+id/questionTextView"
         android:background="@android:color/transparent"
         android:textAlignment="gravity"
         android:gravity="center"
@@ -72,7 +128,9 @@
             android:id="@+id/buttonSpinner"
             android:layout_centerVertical="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="180dp"/>
+            android:layout_marginBottom="180dp"
+            android:layout_marginLeft="@dimen/main_margin"
+            android:layout_marginRight="@dimen/main_margin" />
 
         <Button
             android:text="@string/cont"
@@ -100,6 +158,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/unknown"
         android:background="@drawable/unknown_button"
+        android:textColor="@color/white"
         android:layout_marginBottom="83dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
@@ -110,6 +169,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/yes"
         android:background="@drawable/yes_button"
+        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="83dp"
         android:layout_toRightOf="@+id/unknown"
@@ -120,6 +180,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/no"
+        android:textColor="@color/white"
         android:background="@drawable/no_button"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="83dp"
@@ -140,7 +201,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/left"
             android:background="@drawable/unknown_button"
-
+            android:textColor="@color/white"
             android:layout_marginBottom="83dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
@@ -152,8 +213,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/right"
             android:background="@drawable/no_button"
-
-
+            android:textColor="@color/white"
             android:layout_marginBottom="83dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"

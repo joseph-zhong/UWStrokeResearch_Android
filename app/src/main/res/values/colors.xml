@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--Main-->
+    <!-- Main-->
     <item name="main" type="color">#4B2E83</item>
+    <item name="title" type="color">#95989A</item>
     <item name="white" type="color">#FFF</item>
 
     <!-- Main Colors-->
@@ -9,7 +10,7 @@
     <item name="green" type="color">#3CD198</item>
     <item name="gray" type="color">#BCB6B6</item>
 
-    <!--FlatUI Colors-->
+    <!-- FlatUI Colors-->
     <item name="wisteria" type="color">#8e44ad</item>
     <item name="amethyst" type="color">#9b59b6</item>
     <item name="seafoam" type="color">#66ff99</item>

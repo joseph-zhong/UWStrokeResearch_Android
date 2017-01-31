@@ -35,7 +35,7 @@ public class QuestionHandler {
 
     //Get the question of the current node the handler is observing in the tree
     public String getCurrentQuestion(){
-        if(this.currentQuestion.getType().equals("OR")){
+        if(this.currentQuestion.getType().equals(Node.OR_TYPE)){
             //If the type is OR, return QUIDs
             return getOrQuestions((LogicNode) this.currentQuestion);
         }else if(this.currentQuestion.getType().equals("RESULT")){
@@ -62,14 +62,23 @@ public class QuestionHandler {
         return this.currentQuestion.type;
     }
 
-    public Stack<Node> getQuestionHistory(){ return this.history; }
+    public Stack<Node> getQuestionHistory(){
+        return this.history;
+    }
+
+    public Node getPrevNode() {
+        if (this.history == null || this.history.isEmpty()) {
+            return null;
+        }
+        return this.history.peek();
+    }
 
     //Moves the current node to a new node depending on the input
     public String giveInput(String input){
         Log.d("thing", "--- " + "input type " + this.currentQuestion.getType());
         Log.d("thing", "--- " + "input " + input);
         switch(this.currentQuestion.getType()){
-            case "NUMBER": //Requires number as an input
+            case Node.NUMBER_TYPE: //Requires number as an input
                 Map<Range, String> nextNumber = ((RangeNode) this.currentQuestion).getConnections();
                 int answer = 0;
                 try {
@@ -85,7 +94,7 @@ public class QuestionHandler {
                     }
                 }
                 return "Please insert numeric value inside the specified range";
-            case "BUTTON": //Requires yes/no input
+            case Node.BUTTON_TYPE: //Requires yes/no input
                 Map<String, String> nextNodes = ((DiscreteNode) this.currentQuestion).getConnections();
 
                  /*
@@ -105,12 +114,12 @@ public class QuestionHandler {
                     return "Illegal Key";
                 }
 
-            case "OR": //Requires quid of the question the user wants to answer
+            case Node.OR_TYPE: //Requires quid of the question the user wants to answer
                 setCurrentNode(input);
                 return "";
-            case "UNKNOWN": //FOR UNKNOWN OUTCOME NODES
+            case Node.UNKNOWN_RESPONSE: //FOR UNKNOWN OUTCOME NODES
                 return "This does not require an answer";
-            case "RESULT": //FOR RESULT NODES
+            case Node.RESULT_TYPE: //FOR RESULT NODES
                 return "This does not require an answer";
             default:
                 break;
@@ -120,13 +129,13 @@ public class QuestionHandler {
 
     //Set the current node with the specified quid
     private void setCurrentNode(String QUID){
-
+        Log.v("VERBOSE", "setCurrentNode called");
         for(Node node : this.nodes){
             Log.d("thing", node.getQuestion() + " " + node.getQID());
             if(node.getQID().equals(QUID)){
                 this.currentQuestion = node;
                 /* no history right now
-                if(node.getType().equals("OR")) {
+                if(node.getType().equals(Node.OR_TYPE)) {
                     String s = getOrQuestions((LogicNode) node);
                     this.history.push(this.lookUpQuestion(s.substring(0, 4))
                             + " or " + this.lookUpQuestion(s.substring(5)));
@@ -140,8 +149,9 @@ public class QuestionHandler {
     //Setting the current node with input
     private void setCurrentNode(String QUID, String input){
         //push the current question
+        Log.v("VERBOSE", "setCurrentNode called");
         if (this.currentQuestion != null) {
-            if(this.currentQuestion.getType().equals("OR")) {
+            if(this.currentQuestion.getType().equals(Node.OR_TYPE)) {
                 //do nothing?
                 //String s = getOrQuestions((LogicNode) this.currentQuestion);
                 //this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)) + " A: " + input);
@@ -167,19 +177,19 @@ public class QuestionHandler {
         String type = getCurrentQuestionType();
         List<String> list = new ArrayList<String>();
         switch (type) {
-            case "NUMBER":
+            case Node.NUMBER_TYPE:
                 Map<Range, String> mapR = ((RangeNode) this.currentQuestion).getConnections();
                 for( String s : mapR.values()){
                     list.add(s);
                 }
                 return list;
-            case "BUTTON":
+            case Node.BUTTON_TYPE:
                 Map<String, String> mapB = ((DiscreteNode) this.currentQuestion).getConnections();
                 for (String s: mapB.values()){
                     list.add(s);
                 }
                 return list;
-            case "OR":
+            case Node.OR_TYPE:
                 list.add(((LogicNode) this.currentQuestion).getFirst());
                 list.add(((LogicNode) this.currentQuestion).getSecond());
                 return list;
@@ -193,19 +203,19 @@ public class QuestionHandler {
         String type = getCurrentQuestionType();
         List<String> list = new ArrayList<String>();
         switch (type) {
-            case "NUMBER":
+            case Node.NUMBER_TYPE:
                 Map<Range, String> mapR = ((RangeNode) this.currentQuestion).getConnections();
                 for(Range r : mapR.keySet()){
                     list.add(r.toString());
                 }
                 return list;
-            case "BUTTON":
+            case Node.BUTTON_TYPE:
                 Map<String, String> mapB = ((DiscreteNode) this.currentQuestion).getConnections();
                 for (String s: mapB.keySet()){
                     list.add(s);
                 }
                 return list;
-            case "OR":
+            case Node.OR_TYPE:
                 list.add(((LogicNode) this.currentQuestion).getFirst());
                 list.add(((LogicNode) this.currentQuestion).getSecond());
                 return list;
