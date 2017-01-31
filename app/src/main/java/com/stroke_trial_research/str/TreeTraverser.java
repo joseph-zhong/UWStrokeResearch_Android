@@ -146,7 +146,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                         break;
                     case "BUTTON":
                         int size = questionHandler.getConnectingAnswers().size();
-
                         if (size == 3) {
                             switchView(buttonView);
                             questionBox.setText(questionHandler.getCurrentQuestion());
@@ -179,6 +178,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 questionHandler.giveInput(spinnerResp);
                 String type = questionHandler.getCurrentQuestionType();
 
+                //Tries to reach a non -Or node
                 while (type.equals("OR")) {
                     ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
                     String first = temp.get(0);
@@ -401,6 +401,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         });
     }
 
+    //Sets the Text in the question
     private void initSpinnerResults() {
         questionBox.setText(questionHandler.getCurrentQuestion());
         List<String> list = questionHandler.getConnectingAnswers();
@@ -413,11 +414,20 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         buttonSpinner.setOnItemSelectedListener(this);
     }
 
+    //Sets the Text of the Buttons when there are 2 to view
     private void twoButtonViewInit() {
         List<String> list = questionHandler.getConnectingAnswers();
         right.setText(list.get(0));
         left.setText(list.get(1));
     }
+
+    /*
+    private void threeButtonViewInit() {
+        List<String> list = questionHandler.getConnectingAnswers();
+        no.setText(list.get(0));
+        unknown.setText(list.get(1));
+        yes.setText(list.get(2));
+    }*/
 
     private void terminalScreen(){
         terminalView.setOnClickListener(new View.OnClickListener() {
