@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -171,6 +172,9 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
 
 
     private void resetHistoryView() {
+        historyAnswer.setText("");
+        historyQuestion.setText("");
+
         historyRight.setVisibility(View.INVISIBLE);
         historyLeft.setVisibility(View.INVISIBLE);
         historyNo.setVisibility(View.INVISIBLE);
@@ -509,7 +513,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 //List<String> questions = new Stack<String>();
                 Stack<Node> s = questionHandler.getQuestionHistory();
 
-                intent.putExtra("Quest", s);
+                intent.putExtra(HistoryList.STACK_KEY, (Serializable) s);
                 startActivity(intent);
             }
         });

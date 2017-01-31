@@ -1,6 +1,13 @@
 <resources>
     <dimen name="main_margin">12dp</dimen>
+    <dimen name="big_margin">18dp</dimen>
+    <dimen name="question_margin">220dp</dimen>
     <dimen name="history_top_margin">83dp</dimen>
+    <dimen name="history_question_top_margin">40dp</dimen>
+    <dimen name="history_question_top_big_margin">100dp</dimen>
+
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="text_size">24sp</dimen>
 
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->

@@ -10,7 +10,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/historyLayout"
-        android:alpha="0.8"
+        android:alpha="@string/history_alpha"
         android:layout_alignParentTop="true">
 
         <TextView
@@ -18,12 +18,20 @@
             android:layout_height="wrap_content"
             android:id="@+id/historyQuestionTextView"
             android:background="@android:color/transparent"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_size"
             android:text="@string/app_name"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/history_question_top_margin"
             android:layout_marginLeft="@dimen/main_margin"
-            android:alpha="0.8"
+            android:alpha="@string/history_alpha"
             android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size"
+            android:layout_marginTop="@dimen/history_question_top_big_margin"
+            android:layout_marginLeft="@dimen/main_margin"
+            android:id="@+id/historyAnswer" />
 
         <Button
             android:text="@string/unknown"
@@ -34,8 +42,8 @@
             android:background="@drawable/unknown_button"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="83dp"
-            android:alpha="0.8"
+            android:layout_marginTop="@dimen/history_top_margin"
+            android:alpha="@string/history_alpha"
             android:visibility="invisible" />
 
         <Button
@@ -48,10 +56,10 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/historyUnknown"
             android:layout_toEndOf="@+id/historyUnknown"
-            android:layout_marginLeft="18dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="83dp"
-            android:alpha="0.8"
+            android:layout_marginLeft="@dimen/big_margin"
+            android:layout_marginStart="@dimen/big_margin"
+            android:layout_marginTop="@dimen/history_top_margin"
+            android:alpha="@string/history_alpha"
             android:visibility="invisible" />
 
         <Button
@@ -64,10 +72,10 @@
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/historyUnknown"
             android:layout_toStartOf="@+id/historyUnknown"
-            android:layout_marginRight="19dp"
-            android:layout_marginEnd="19dp"
+            android:layout_marginRight="@dimen/big_margin"
+            android:layout_marginEnd="@dimen/big_margin"
             android:layout_marginTop="@dimen/history_top_margin"
-            android:alpha="0.8"
+            android:alpha="@string/history_alpha"
             android:visibility="invisible" />
 
         <Button
@@ -77,7 +85,7 @@
             android:id="@+id/historyRight"
             android:background="@drawable/no_button"
             android:textColor="@color/white"
-            android:alpha="0.8"
+            android:alpha="@string/history_alpha"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/main_margin"
             android:layout_marginTop="@dimen/history_top_margin"
@@ -90,17 +98,11 @@
             android:id="@+id/historyLeft"
             android:background="@drawable/unknown_button"
             android:textColor="@color/white"
-            android:alpha="0.8"
+            android:alpha="@string/history_alpha"
             android:layout_marginTop="@dimen/history_top_margin"
             android:layout_marginLeft="@dimen/main_margin"
             android:layout_alignParentLeft="true"
             android:visibility="invisible" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:id="@+id/historyAnswer" />
 
     </RelativeLayout>
 
@@ -109,11 +111,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/questionTextView"
         android:background="@android:color/transparent"
-        android:textAlignment="gravity"
-        android:gravity="center"
-        android:textSize="40sp"
+        android:gravity="left"
+        android:textSize="@dimen/text_size"
         android:text="@string/app_name"
-        android:layout_marginTop="240dp"/>
+        android:layout_marginLeft="@dimen/main_margin"
+        android:layout_marginTop="@dimen/question_margin"/>
 
 
     <RelativeLayout
@@ -139,7 +141,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/spinnerContinue"
             android:background="@drawable/round_rect"
-            android:layout_marginBottom="83dp"
+            android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
@@ -159,7 +161,7 @@
         android:id="@+id/unknown"
         android:background="@drawable/unknown_button"
         android:textColor="@color/white"
-        android:layout_marginBottom="83dp"
+        android:layout_marginBottom="@dimen/history_top_margin"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -171,9 +173,9 @@
         android:background="@drawable/yes_button"
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="83dp"
+        android:layout_marginBottom="@dimen/history_top_margin"
         android:layout_toRightOf="@+id/unknown"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="@dimen/big_margin"/>
 
     <Button
         android:text="@string/no"
@@ -183,9 +185,9 @@
         android:textColor="@color/white"
         android:background="@drawable/no_button"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="83dp"
+        android:layout_marginBottom="@dimen/history_top_margin"
         android:layout_toLeftOf="@+id/unknown"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginRight="@dimen/big_margin"/>
 
     </RelativeLayout>
 
@@ -202,10 +204,10 @@
             android:id="@+id/left"
             android:background="@drawable/unknown_button"
             android:textColor="@color/white"
-            android:layout_marginBottom="83dp"
+            android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="40dp"/>
+            android:layout_marginLeft="@dimen/history_question_top_margin"/>
 
         <Button
             android:text="Right"
@@ -214,10 +216,10 @@
             android:id="@+id/right"
             android:background="@drawable/no_button"
             android:textColor="@color/white"
-            android:layout_marginBottom="83dp"
+            android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"/>
+            android:layout_marginRight="@dimen/history_question_top_margin"/>
 
 
     </RelativeLayout>
@@ -245,7 +247,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/rangeContinue"
             android:background="@drawable/round_rect"
-            android:layout_marginBottom="83dp"
+            android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
@@ -263,7 +265,7 @@
             android:id="@+id/history"
             android:textColor="@color/white"
             android:background="@drawable/round_rect"
-            android:layout_marginBottom="83dp"
+            android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
