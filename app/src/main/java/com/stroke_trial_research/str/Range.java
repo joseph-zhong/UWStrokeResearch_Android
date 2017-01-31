@@ -1,6 +1,7 @@
 package com.stroke_trial_research.str;
 
 import android.util.Log;
+import java.io.Serializable;
 
 /**
  * Created by James on 11/11/2016.
@@ -13,7 +14,7 @@ import android.util.Log;
  * use a combination.
  */
 
-public class Range {
+public class Range implements Serializable{
     public int lower = Integer.MIN_VALUE;
     public int upper = Integer.MAX_VALUE;
     String type;
