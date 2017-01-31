@@ -15,9 +15,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-public class HistoryList extends AppCompatActivity {
+public class HistoryList extends Activity {
 
     private ArrayAdapter<String> adapter;
+    public static final String STACK_KEY = "STACK_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +26,17 @@ public class HistoryList extends AppCompatActivity {
         setContentView(R.layout.activity_history_list);
 
         Intent i = getIntent();
-        List<Node> nodeList = (List<Node>) i.getExtras().get("Quest");
+//        Stack<Node> nodeStack = (Stack<Node>) i.getExtras().getSerializable(STACK_KEY);
+        List<Node> nodeList = (List<Node>) i.getExtras().getSerializable(STACK_KEY);
+
         List<String> printStrings = new LinkedList<>();
 
         for (Node n : nodeList) {
             printStrings.add(n.toString());
         }
+//        while(!nodeStack.isEmpty()) {
+//            printStrings.add(nodeStack.pop().toString());
+//        }
 
         final ListView list = (ListView) findViewById(R.id.QuestionList);
 
