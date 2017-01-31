@@ -20,14 +20,15 @@ import java.util.Stack;
  */
 public class QuestionHandler {
     private Node currentQuestion;
-    private Stack<String> history;
+    private Stack<Node> history;
     private List<Node> nodes;
 
 
     public QuestionHandler(List<Node> nodes){
         this.nodes = nodes;
-        this.history = new Stack<String>();
-        //Set the start node as q002
+        this.history = new Stack<Node>();
+
+        //Set the start node as q001
         setCurrentNode("q001", null);
 
     }
@@ -61,9 +62,7 @@ public class QuestionHandler {
         return this.currentQuestion.type;
     }
 
-    public Stack<String> getQuestionHistory(){
-        return this.history;
-    }
+    public Stack<Node> getQuestionHistory(){ return this.history; }
 
     //Moves the current node to a new node depending on the input
     public String giveInput(String input){
@@ -105,23 +104,7 @@ public class QuestionHandler {
                     e.printStackTrace();
                     return "Illegal Key";
                 }
-                /*
-                if(input.toLowerCase().equals("yes")){
-                    Log.d("thing", "--- " + "l");
-                    setCurrentNode(nextNodes.get("yes"), input);
-                    Log.d("thing", "--- " + "leave");
-                    return "You have answered yes";
-                }else if(input.toLowerCase().equals("no")) {
-                    setCurrentNode(nextNodes.get("no"), input);
-                    Log.d("thing", "--- " + "leave");
-                    return "You have answered no";
-                }else if(input.toLowerCase().equals("start")) {
-                    setCurrentNode(nextNodes.get("start"), input);
-                    Log.d("thing", "--- " + "leave");
-                }else {
-                    Log.d("thing", "--- " + "leave");
-                    return "Please answer Yes or No";
-                }*/
+
             case "OR": //Requires quid of the question the user wants to answer
                 setCurrentNode(input);
                 return "";
@@ -142,25 +125,29 @@ public class QuestionHandler {
             Log.d("thing", node.getQuestion() + " " + node.getQID());
             if(node.getQID().equals(QUID)){
                 this.currentQuestion = node;
-
+                /* no history right now
                 if(node.getType().equals("OR")) {
                     String s = getOrQuestions((LogicNode) node);
                     this.history.push(this.lookUpQuestion(s.substring(0, 4))
                             + " or " + this.lookUpQuestion(s.substring(5)));
                 }else{
                     this.history.push(this.currentQuestion.getQuestion());
-                }
+                }*/
             }
         }
     }
 
+    //Setting the current node with input
     private void setCurrentNode(String QUID, String input){
+        //push the current question
         if (this.currentQuestion != null) {
             if(this.currentQuestion.getType().equals("OR")) {
-                String s = getOrQuestions((LogicNode) this.currentQuestion);
-                this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)) + " A: " + input);
+                //do nothing?
+                //String s = getOrQuestions((LogicNode) this.currentQuestion);
+                //this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)) + " A: " + input);
             }else{
-                this.history.push("Q: " + this.currentQuestion.getQuestion() + " A: " + input);
+                this.currentQuestion.setAnswer(input);
+                this.history.push(this.currentQuestion);
             }
         }
 

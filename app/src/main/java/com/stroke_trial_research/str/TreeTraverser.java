@@ -438,10 +438,10 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
-                List<String> questions = new Stack<String>();
-                Stack<String> s = questionHandler.getQuestionHistory();
+                //List<String> questions = new Stack<String>();
+                Stack<Node> s = questionHandler.getQuestionHistory();
 
-                intent.putExtra("Quest", (Serializable) s);
+                intent.putExtra("Quest", s);
                 startActivity(intent);
             }
         });

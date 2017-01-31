@@ -1,4 +1,5 @@
 package com.stroke_trial_research.str;
+import java.io.Serializable;
 
 /**
  * Created by James on 10/20/2016.
@@ -10,7 +11,7 @@ package com.stroke_trial_research.str;
  * that should be displayed to the screen (except logic which is just for linking other nodes)
  * Nodes can also be compared to one another to see which one comes first or to sort them.
  */
-public abstract class Node implements Comparable<Node> {
+public abstract class Node implements Comparable<Node>, Serializable {
 
     //Number of Nodes in the connections
     protected int connectNum;
@@ -24,11 +25,15 @@ public abstract class Node implements Comparable<Node> {
     //The type of node that is being used (Range, Discrete,... etc)
     protected String type;
 
+    //The answer the user selects for the node
+    protected String answer;
+
     public Node(int connectNum, String QID, String question, String type) {
         this.connectNum = connectNum;
         this.QID = QID;
         this.question = question;
         this.type = type;
+        this.answer = "";
     }
 
     public String getQID() {
@@ -47,6 +52,10 @@ public abstract class Node implements Comparable<Node> {
         return type;
     }
 
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
 
     // Says that higher up nodes (ie with smaller QIDS) are greater and
     //that  q nodes are always greater than r nodes.
@@ -62,4 +71,10 @@ public abstract class Node implements Comparable<Node> {
             return Integer.parseInt(node.QID.substring(1)) - Integer.parseInt(this.QID.substring(1));
         }
     }
+
+    @Override
+    public String toString() {
+        return ("Q:" + this.question +" A: " + this.answer);
+    }
+
 }
