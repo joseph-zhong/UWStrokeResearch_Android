@@ -75,8 +75,6 @@ public class QuestionHandler {
 
     //Moves the current node to a new node depending on the input
     public String giveInput(String input){
-        Log.d("thing", "--- " + "input type " + this.currentQuestion.getType());
-        Log.d("thing", "--- " + "input " + input);
         switch(this.currentQuestion.getType()){
             case Node.NUMBER_TYPE: //Requires number as an input
                 Map<Range, String> nextNumber = ((RangeNode) this.currentQuestion).getConnections();
@@ -97,14 +95,6 @@ public class QuestionHandler {
             case Node.BUTTON_TYPE: //Requires yes/no input
                 Map<String, String> nextNodes = ((DiscreteNode) this.currentQuestion).getConnections();
 
-                 /*
-                Log.d("thing", "--- " + "enter");
-                //Map<String, String> nextNodes = ((DiscreteNode) this.currentQuestion).getConnections();
-                DiscreteNode disc = (DiscreteNode) this.currentQuestion;
-                Map<String, String> nextNodes = disc.getConnections();
-                Log.d("thing", nextNodes.toString())*/
-
-                //Works Better with buttons of N size and spinners
                 try {
                     String next = nextNodes.get(input);
                     setCurrentNode(next, input);
@@ -228,6 +218,7 @@ public class QuestionHandler {
     public Node revertHistory() {
         Node n = this.history.pop();
         this.currentQuestion = n;
+        Log.e("FUCK", n.toString());
         return n;
     }
 }

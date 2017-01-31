@@ -98,19 +98,20 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 while (!asdf.isEmpty()) {
                     Log.i("TESTING", "History: " + asdf.pop());
                 }
-                Log.i("TESTING", "History: " + prevNode);
+                Log.i("TESTING", "History: " + prevNode.getType());
 
                 String type = questionHandler.getCurrentQuestionType();
+                questionBox.setText(questionHandler.getCurrentQuestion());
                 if (type.equals(Node.NUMBER_TYPE)) {
                     updateView(rangeView);
-                    questionBox.setText(questionHandler.getCurrentQuestion());
+
                     openKeyboard();
                 } else if (type.equals(Node.BUTTON_TYPE)) {
+
                     int size = questionHandler.getConnectingAnswers().size();
 
                     if (size == 3) {
                         updateView(buttonView);
-                        questionBox.setText(questionHandler.getCurrentQuestion());
                     } else if (size == 2) {
                         updateView(twoButtonView);
                         twoButtonViewInit();
@@ -389,7 +390,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             @Override
             public void onClick(View v) {
                 lastClicked = UNKNOWN_INDEX;
-                questionHandler.giveInput("yes");
+                questionHandler.giveInput("unknown");
                 updateQuestion();
             }
         });
@@ -491,14 +492,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         right.setText(list.get(0));
         left.setText(list.get(1));
     }
-
-    /*
-    private void threeButtonViewInit() {
-        List<String> list = questionHandler.getConnectingAnswers();
-        no.setText(list.get(0));
-        unknown.setText(list.get(1));
-        yes.setText(list.get(2));
-    }*/
 
     private void terminalScreen(){
         terminalView.setOnClickListener(new View.OnClickListener() {
