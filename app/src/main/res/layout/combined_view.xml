@@ -45,7 +45,6 @@
                 android:background="@drawable/no_button"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="83dp"
-                android:layout_toLeftOf="@+id/historyUnknown"
                 android:layout_marginRight="20dp"/>
 
         </RelativeLayout>
@@ -57,25 +56,29 @@
             android:layout_height="match_parent">
 
             <Button
-                android:text="@string/unknown"
+                android:text="Left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/historyLeft"
                 android:background="@drawable/unknown_button"
-                android:layout_marginBottom="83dp"
 
+                android:layout_marginBottom="83dp"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="30dp"/>
 
             <Button
-                android:text="@string/yes"
+                android:text="Right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/historyRight"
                 android:background="@drawable/no_button"
-                android:layout_alignParentBottom="true"
+
+
                 android:layout_marginBottom="83dp"
-                android:layout_toRightOf="@+id/historyLeft" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"/>
 
 
         </RelativeLayout>
@@ -169,25 +172,29 @@
         android:layout_height="match_parent">
 
         <Button
-            android:text="@string/unknown"
+            android:text="Left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/left"
             android:background="@drawable/unknown_button"
-            android:layout_marginBottom="83dp"
 
+            android:layout_marginBottom="83dp"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="40dp"/>
 
         <Button
-            android:text="@string/yes"
+            android:text="Right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/right"
             android:background="@drawable/no_button"
-            android:layout_alignParentBottom="true"
+
+
             android:layout_marginBottom="83dp"
-            android:layout_toRightOf="@+id/left" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"/>
 
 
     </RelativeLayout>

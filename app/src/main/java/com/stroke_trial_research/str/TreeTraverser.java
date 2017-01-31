@@ -75,7 +75,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         questionBox = (TextView) findViewById(R.id.questionView);
         questionHandler = new QuestionHandler(nodeList);
         String type = questionHandler.getCurrentQuestionType();
-        questionBox.setText(type);
+        questionBox.setText(questionHandler.getCurrentQuestion());
 
         while (type.equals("OR")){
             ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
