@@ -1,0 +1,315 @@
+{
+	"q000": {
+		"type": "BUTTON",
+		"question": "Ready?",
+		"options": [
+			{"type": "EQUAL", "value":"start", "next": "q001"}
+		]
+	},
+	"q001": {
+		"type": "BUTTON",
+		"question": "STROKE TYPE?",
+		"options": [
+			{"type": "EQUAL", "value": "ISCHEMIC", "next": "q002"},
+			{"type": "EQUAL", "value": "HEMORRHAGIC", "next": "q021"}
+		]
+	},
+	"q002": {
+		"type": "NUMBER",
+		"question": "Hours Since Last Known Normal?",
+		"options": [
+			{"type": "RANGE", "lower": 0, "upper": 7, "next": "q003"},
+			{"type": "RANGE", "lower": 6, "upper": 10, "next": "q011"},
+			{"type": "RANGE", "lower": 10, "upper": 13, "next": "q010"},
+			{"type": "RANGE", "lower": 13, "upper": 17, "next": "q005"},
+			{"type": "RANGE", "lower": 17, "upper": 100, "next": "r000"}
+		]
+	},
+	"q021": {
+		"type": "NUMBER",
+		"question": "Hours Since Last Known Normal?",
+		"options": [
+			{"type": "RANGE", "lower": 0, "upper": 25, "next": "q022"},
+			{"type": "RANGE", "lower": 25, "upper": 100, "next": "r000"}
+		]
+	},
+	"q022": {
+		"type": "NUMBER",
+		"question": "NIHSS Score?",
+		"options": [
+			{"type": "RANGE", "lower": -1, "upper": 6, "next": "r000"},
+			{"type": "RANGE", "lower": 6, "upper": 100, "next": "q023"}
+		]
+	},
+	"q023": {
+		"type": "BUTTON",
+		"question": "Glascow Coma Score > 6?",
+		"options": [
+		      {"type": "EQUAL",	"value": "YES", "next": "q024"},
+		      {"type": "EQUAL", "value": "UNKNOWN", "next": "q024"},
+		      {"type": "EQUAL",	"value": "NO", "next": "r000"}
+		]
+	},
+	"q024": {
+		"type": "BUTTON",
+		"question": "Age <= 80 years?",
+		"options": [
+		      {"type": "EQUAL",	"value": "YES", "next": "r011"},
+		      {"type": "EQUAL", "value": "UNKNOWN", "next": "r011"},
+		      {"type": "EQUAL",	"value": "NO", "next": "r000"}
+		]
+	},
+	"q003": {
+		"type": "NUMBER",
+		"question": "NIHSS Score?",
+		"options": [
+			{"type": "RANGE", "lower": -1, "upper": 3, "next": "r001"},
+			{"type": "EQUAL", "value": 3, "next": "q008"},
+			{"type": "EQUAL", "value": 4, "next": "q006"},
+			{"type": "EQUAL", "value": 5, "next": "q009"},
+			{"type": "RANGE", "lower": 6, "upper": 23 , "next": "q012"},
+			{"type": "EQUAL", "value": 23, "next": "q007"},
+			{"type": "RANGE", "lower": 24, "upper": 100, "next": "r000"}
+		]
+	},
+	"q011": {
+		"type": "NUMBER",
+		"question": "NIHSS Score?",
+		"options": [
+			{"type": "RANGE", "lower": -1, "upper": 3, "next": "r001"},
+			{"type": "EQUAL", "value": 3, "next": "q008"},
+			{"type": "EQUAL", "value": 4, "next": "q006"},
+			{"type": "EQUAL", "value": 5, "next": "q009"},
+			{"type": "RANGE", "lower": 6, "upper": 23 , "next": "q012"},
+			{"type": "EQUAL", "value": 23, "next": "q007"},
+			{"type": "RANGE", "lower": 24, "upper": 100, "next": "q015"}
+		]
+	},
+	"q010": {
+		"type": "NUMBER",
+    "question": "NIHSS Score?",
+    "options": [
+			{"type": "RANGE", "lower": -1, "upper": 3, "next": "r001"},
+			{"type": "EQUAL", "value": 3, "next": "q008"},
+			{"type": "EQUAL", "value": 4, "next": "q006"},
+			{"type": "EQUAL", "value": 5, "next": "q009"},
+			{"type": "RANGE", "lower": 6, "upper": 23 , "next": "q012"},
+			{"type": "EQUAL", "value": 23, "next": "q007"},
+			{"type": "RANGE", "lower": 24, "upper": 100, "next": "q020"}
+		]
+	},
+	"q004": {
+		"type": "NUMBER",
+		"question": "NIHSS Score?",
+		"options": [
+			{"type": "RANGE", "lower": -1, "upper": 3, "next": "r001"},
+			{"type": "EQUAL", "value": 3, "next": "q008"},
+			{"type": "EQUAL", "value": 4, "next": "q006"},
+			{"type": "EQUAL", "value": 5, "next": "q009"},
+			{"type": "EQUAL", "value": 6, "next": "q009"},
+			{"type": "RANGE", "lower": 7, "upper": 24 , "next": "q006"},
+			{"type": "RANGE", "lower": 24, "upper": 100, "next": "r000"}
+		]
+	},
+	"q005": {
+		"type": "NUMBER",
+		"question": "NIHSS Score?",
+		"options": [
+			{"type": "RANGE", "lower": -1, "upper": 3, "next": "r001"},
+			{"type": "EQUAL", "value": 3, "next": "q008"},
+			{"type": "EQUAL", "value": 4, "next": "q006"},
+			{"type": "EQUAL", "value": 5, "next": "q007"},
+			{"type": "RANGE", "lower": 6, "upper": 100, "next": "q020"}
+		]
+	},
+	"q006": {
+	    "type": "BUTTON",
+	    "question": "History of T2DM and POCK >= 110 OR POCT >= 150?",
+	    "options": [
+	      {"type": "EQUAL",	"value": "YES", "next": "r004"},
+	      {"type": "EQUAL", "value": "UNKNOWN", "next": "r004"},
+	      {"type": "EQUAL",	"value": "NO", "next": "r000"}
+	    ]
+	},
+	"q008": {
+	    "type": "BUTTON",
+	    "question": "History of T2DM and POCK >= 110 OR POCT >= 150?",
+	    "options": [
+	      {"type": "EQUAL",	"value": "YES", "next": "r002"},
+	      {"type": "EQUAL", "value": "UNKNOWN", "next": "r002"},
+	      {"type": "EQUAL",	"value": "NO", "next": "r001"}
+	    ]
+	},
+	"q009": {
+	    "type": "BUTTON",
+	    "question": "History of T2DM and POCK >= 110 OR POCT >= 150?",
+	    "options": [
+	      {"type": "EQUAL",	"value": "YES", "next": "r005"},
+	      {"type": "EQUAL", "value": "UNKNOWN", "next": "r005"},
+	      {"type": "EQUAL",	"value": "NO", "next": "r004"}
+	    ]
+	},
+	"q012": {
+	    "type": "BUTTON",
+	    "question": "History of T2DM and POCK >= 110 OR POCT >= 150?",
+	    "options": [
+	      {"type": "EQUAL",	"value": "YES", "next": "q013"},
+	      {"type": "EQUAL", "value": "UNKNOWN", "next": "q013"},
+	      {"type": "EQUAL",	"value": "NO", "next": "q014"}
+	    ]
+	},
+	"q016": {
+	    "type": "BUTTON",
+	    "question": "History of T2DM and POCK >= 110 OR POCT >= 150?",
+	    "options": [
+	      {"type": "EQUAL",	"value": "YES", "next": "r004"},
+	      {"type": "EQUAL", "value": "UNKNOWN", "next": "r004"},
+	      {"type": "EQUAL",	"value": "NO", "next": "r000"}
+	    ]
+	},
+	"q017": {
+	    "type": "BUTTON",
+	    "question": "History of T2DM and POCK >= 110 OR POCT >= 150?",
+	    "options": [
+	      {"type": "EQUAL",	"value": "YES", "next": "q018"},
+	      {"type": "EQUAL", "value": "UNKNOWN", "next": "q018"},
+	      {"type": "EQUAL",	"value": "NO", "next": "q019"}
+	    ]
+	},
+	"q013": {
+		"type": "BUTTON",
+		"question": "M1 or ICA occlusion?",
+		"options": [
+			{"type": "EQUAL", "value": "YES", "next": "r007"},
+			{"type": "EQUAL", "value": "UNKNOWN", "next": "r007"},
+			{"type": "EQUAL", "value": "NO", "next": "r005"}
+		]
+	},
+	"q014": {
+		"type": "BUTTON",
+		"question": "M1 or ICA occlusion?",
+		"options": [
+			{"type": "EQUAL", "value": "YES", "next": "r007"},
+			{"type": "EQUAL", "value": "UNKNOWN", "next": "r007"},
+			{"type": "EQUAL", "value": "NO", "next": "r006"}
+		]
+	},
+	"q015": {
+		"type": "BUTTON",
+		"question": "M1 or ICA occlusion?",
+		"options": [
+			{"type": "EQUAL", "value": "YES", "next": "r009"},
+			{"type": "EQUAL", "value": "UNKNOWN", "next": "r009"},
+			{"type": "EQUAL", "value": "NO", "next": "r006"}
+		]
+	},
+	"q018": {
+		"type": "BUTTON",
+		"question": "M1 or ICA occlusion?",
+		"options": [
+			{"type": "EQUAL", "value": "YES", "next": "r010"},
+			{"type": "EQUAL", "value": "UNKNOWN", "next": "r010"},
+			{"type": "EQUAL", "value": "NO", "next": "r004"}
+		]
+	},
+	"q019": {
+		"type": "BUTTON",
+		"question": "M1 or ICA occlusion?",
+		"options": [
+			{"type": "EQUAL", "value": "YES", "next": "r010"},
+			{"type": "EQUAL", "value": "UNKNOWN", "next": "r010"},
+			{"type": "EQUAL", "value": "NO", "next": "r000"}
+		]
+	},
+	"q020": {
+		"type": "BUTTON",
+		"question": "M1 or ICA occlusion?",
+		"options": [
+			{"type": "EQUAL", "value": "YES", "next": "r009"},
+			{"type": "EQUAL", "value": "UNKNOWN", "next": "r009"},
+			{"type": "EQUAL", "value": "NO", "next": "r000"}
+		]
+	},
+	"q007": {
+		"type": "BUTTON",
+		"question": "M1 or ICA occlusion?",
+		"options": [
+			{"type": "EQUAL", "value": "YES", "next": "r008"},
+			{"type": "EQUAL", "value": "UNKNOWN", "next": "r008"},
+			{"type": "EQUAL", "value": "NO", "next": "r006"}
+		]
+	},
+	"q111": {
+		"type": "OR",
+		"question": ["q110", "q109"]
+	},
+	"q110": {
+		"type": "BUTTON",
+		"question": "TIA with ABCD2 >= 4",
+		"options": [
+			{"type": "EQUAL", "value": "YES", "next": "r002"},
+			{"type": "EQUAL", "value": "NO", "next": "q010"} 
+		]
+	},
+	"q109": {
+		"type": "BUTTON",
+		"question": "Not Done Yet.",
+		"options": [
+			{"type": "EQUAL", "value": "finish", "next": "r000"}
+		]
+	},
+	"r000": {
+		"type": "UNKNOWN",
+		"message": "No studies available."
+	},
+	"r001": {
+		"type": "RESULT",
+		"message": "POINT Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	},
+	"r002": {
+		"type": "RESULT",
+		"message": "POINT & SHINE Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	},
+	"r004": {
+		"type": "RESULT",
+		"message": "SHINE Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	},
+	"r005": {
+		"type": "RESULT",
+		"message": "SHINE & ACTION 2 Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	},
+	"r006": {
+		"type": "RESULT",
+		"message": "ACTION 2 Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	},
+	"r007": {
+		"type": "RESULT",
+		"message": "SHINE, ACTION 2 & DEFUSE 3 Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	},
+	"r008": {
+		"type": "RESULT",
+		"message": "DEFUSE 3 & ACTION 2 Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	},
+	"r009": {
+		"type": "RESULT",
+		"message": "DEFUSE 3 Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	},
+	"r010": {
+		"type": "RESULT",
+		"message": "SHINE & DEFUSE 3 Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	},
+	"r011": {
+		"type": "RESULT",
+		"message": "IDEF Eligible\nCall Glenn Schubert",
+		"phone": "206-290-9245"
+	}
+}
