@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Stroke Research Enrollment</string>
+    <!--<string name="app_name">Stroke Research Enrollment</string>-->
+    <string name="app_name">Opera</string>
+    <string name="app_description">Mobile Application for Research Trial Availability</string>
 
     <string name="action_settings">Settings</string>
     <string name="client">Client</string>

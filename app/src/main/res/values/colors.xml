@@ -9,6 +9,7 @@
     <item name="red" type="color">#F26565</item>
     <item name="green" type="color">#3CD198</item>
     <item name="gray" type="color">#BCB6B6</item>
+    <item name="dark_gray" type="color">#95989A</item>
 
     <!-- FlatUI Colors-->
     <item name="wisteria" type="color">#8e44ad</item>

@@ -37,32 +37,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*
+
         setContentView(R.layout.activity_main);
-        setUpHome(); */
-
-        //Only for showcasing App's potential
-        setContentView(R.layout.test_view);
-        setUpTestInterface();
-    }
-
-    private void setUpTestInterface() {
-        final Button beginbutton = (Button) findViewById(R.id.beginButton);
-
-        beginbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                int id = R.raw.decision_tree;
-                bundle.putInt("ID",id);
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(), TreeTraverser.class); //perhaps wrong context
-                // Initialize Tree and Tree handler then begin traversal.
-                //startActivity(intent, bundle);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
+        setUpHome();
     }
 
     private void setUpHome() {
@@ -72,7 +49,8 @@ public class MainActivity extends Activity {
         clientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ClientListActivity.class));
+//                startActivity(new Intent(MainActivity.this, ClientListActivity.class));
+                startActivity(new Intent(getApplicationContext(), TreeTraverser.class));
             }
         });
 

@@ -45,7 +45,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/history_top_margin"
             android:alpha="@string/history_alpha"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
         <Button
             android:text="@string/yes"
@@ -61,7 +63,9 @@
             android:layout_marginStart="@dimen/big_margin"
             android:layout_marginTop="@dimen/history_top_margin"
             android:alpha="@string/history_alpha"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
         <Button
             android:text="@string/no"
@@ -77,7 +81,9 @@
             android:layout_marginEnd="@dimen/big_margin"
             android:layout_marginTop="@dimen/history_top_margin"
             android:alpha="@string/history_alpha"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
         <Button
             android:text=""
@@ -90,7 +96,9 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/main_margin"
             android:layout_marginTop="@dimen/history_top_margin"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
         <Button
             android:text=""
@@ -103,7 +111,9 @@
             android:layout_marginTop="@dimen/history_top_margin"
             android:layout_marginLeft="@dimen/main_margin"
             android:layout_alignParentLeft="true"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
     </RelativeLayout>
 
@@ -133,7 +143,9 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="180dp"
             android:layout_marginLeft="@dimen/main_margin"
-            android:layout_marginRight="@dimen/main_margin" />
+            android:layout_marginRight="@dimen/main_margin"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
         <Button
             android:text="@string/cont"
@@ -141,10 +153,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/spinnerContinue"
-            android:background="@drawable/round_rect"
+            android:background="@drawable/history_button"
             android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
 
     </RelativeLayout>
@@ -164,7 +178,9 @@
         android:textColor="@color/white"
         android:layout_marginBottom="@dimen/history_top_margin"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:shadowRadius="0"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
         android:text="@string/yes"
@@ -176,7 +192,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/history_top_margin"
         android:layout_toRightOf="@+id/unknown"
-        android:layout_marginLeft="@dimen/big_margin"/>
+        android:layout_marginLeft="@dimen/big_margin"
+        android:shadowRadius="0"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
         android:text="@string/no"
@@ -188,7 +206,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/history_top_margin"
         android:layout_toLeftOf="@+id/unknown"
-        android:layout_marginRight="@dimen/big_margin"/>
+        android:layout_marginRight="@dimen/big_margin"
+        android:shadowRadius="0"
+        style="?android:attr/borderlessButtonStyle" />
 
     </RelativeLayout>
 
@@ -208,7 +228,9 @@
             android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/history_question_top_margin"/>
+            android:layout_marginLeft="@dimen/history_question_top_margin"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
         <Button
             android:text="Right"
@@ -220,7 +242,9 @@
             android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/history_question_top_margin"/>
+            android:layout_marginRight="@dimen/history_question_top_margin"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
 
     </RelativeLayout>
@@ -247,10 +271,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rangeContinue"
-            android:background="@drawable/round_rect"
+            android:background="@drawable/history_button"
             android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
     </RelativeLayout>
 
@@ -265,10 +291,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/history"
             android:textColor="@color/white"
-            android:background="@drawable/round_rect"
+            android:background="@drawable/history_button"
             android:layout_marginBottom="@dimen/history_top_margin"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:shadowRadius="0"
+            style="?android:attr/borderlessButtonStyle" />
 
     </RelativeLayout>
 

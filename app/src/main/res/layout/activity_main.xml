@@ -1,10 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/main_margin"
-    android:paddingBottom="@dimen/main_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <Button
@@ -12,22 +10,55 @@
         android:layout_height="wrap_content"
         android:id="@+id/admin_btn"
         android:textColor="@color/white"
-        android:background="@drawable/round_rect"
+        android:background="@drawable/admin_button"
         android:layout_width="150dp"
         android:layout_alignTop="@+id/client_btn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="94dp" />
+        android:layout_marginTop="94dp"
+        android:shadowRadius="0"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
         android:text="@string/client"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/client_btn"
-        android:background="@drawable/round_rect"
+        android:background="@drawable/client_button"
         android:textColor="@color/white"
         android:layout_marginTop="211dp"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/admin_btn"
-        android:layout_alignStart="@+id/admin_btn" />
+        android:layout_alignStart="@+id/admin_btn"
+        android:textSize="14sp"
+        android:shadowRadius="0"
+        style="?android:attr/borderlessButtonStyle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="68dp"
+        android:id="@+id/logoTextView"
+        android:textColor="@color/dark_gray"
+        android:text="@string/app_name"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:shadowRadius="0"/>
+
+    <TextView
+        android:text="@string/app_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionTextView"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:lines="1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp"
+        android:shadowRadius="0"/>
 
 </RelativeLayout>
