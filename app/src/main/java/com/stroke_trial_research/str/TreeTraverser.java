@@ -494,13 +494,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     }
 
     private void terminalScreen(){
-        terminalView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((InputMethodManager) getSystemService(TreeTraverser.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
-                        editText.getWindowToken(), 0);
-            }
-        });
+
 
         questionBox.setText(questionHandler.getCurrentQuestion());
         Log.e("Term get", questionHandler.getCurrentQuestion());

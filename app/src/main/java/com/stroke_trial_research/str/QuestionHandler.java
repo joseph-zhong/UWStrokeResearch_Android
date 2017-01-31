@@ -216,9 +216,11 @@ public class QuestionHandler {
     }
 
     public Node revertHistory() {
+        if (this.history.isEmpty()) {
+            return null;
+        }
         Node n = this.history.pop();
         this.currentQuestion = n;
-        Log.e("FUCK", n.toString());
         return n;
     }
 }
