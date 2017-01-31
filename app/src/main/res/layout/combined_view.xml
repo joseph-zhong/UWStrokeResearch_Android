@@ -139,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/left"
-            android:background="@drawable/unknown_button"
+            android:background="@drawable/left_button"
 
             android:layout_marginBottom="83dp"
             android:layout_alignParentBottom="true"
@@ -151,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/right"
-            android:background="@drawable/no_button"
+            android:background="@drawable/right_button"
 
 
             android:layout_marginBottom="83dp"
