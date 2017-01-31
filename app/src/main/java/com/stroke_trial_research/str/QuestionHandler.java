@@ -224,4 +224,10 @@ public class QuestionHandler {
         }
         return null;
     }
+
+    public Node revertHistory() {
+        Node n = this.history.pop();
+        this.currentQuestion = n;
+        return n;
+    }
 }

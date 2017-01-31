@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -47,6 +46,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             terminalView, buttonView, twoButtonView, currentView;
     private Spinner buttonSpinner;
     private String spinnerResp;
+    private RelativeLayout historyLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,45 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         String type = questionHandler.getCurrentQuestionType();
         questionBox.setText(questionHandler.getCurrentQuestion());
 
+        View.OnClickListener traverseHistory = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("TESTING", "Traverse History OnClicked!");
+
+                Node prevNode = questionHandler.revertHistory();
+
+                Stack<Node> asdf = (Stack<Node>) questionHandler.getQuestionHistory().clone();
+                while (!asdf.isEmpty()) {
+                    Log.i("TESTING", "History: " + asdf.pop());
+                }
+                Log.i("TESTING", "History: " + prevNode);
+
+                String type = questionHandler.getCurrentQuestionType();
+                if (type.equals(Node.NUMBER_TYPE)) {
+                    updateView(rangeView);
+                    questionBox.setText(questionHandler.getCurrentQuestion());
+                    openKeyboard();
+                } else if (type.equals(Node.BUTTON_TYPE)) {
+                    int size = questionHandler.getConnectingAnswers().size();
+
+                    if (size == 3) {
+                        updateView(buttonView);
+                        questionBox.setText(questionHandler.getCurrentQuestion());
+                    } else if (size == 2) {
+                        updateView(twoButtonView);
+                        twoButtonViewInit();
+                    } else {
+                        updateView(spinnerView);
+                        initSpinnerResults();
+                    }
+                } else {                    //Also add logical options
+                    updateView(terminalView);
+                    terminalScreen();
+                }
+            }
+        };
         // history
+        historyLayout = (RelativeLayout) findViewById(R.id.historyLayout);
         historyUnknown = (Button) findViewById(R.id.historyUnknown);
         historyNo = (Button) findViewById(R.id.historyNo);
         historyYes = (Button) findViewById(R.id.historyYes);
@@ -95,6 +133,15 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         historyRight = (Button) findViewById(R.id.historyRight);
         historyAnswer = (TextView) findViewById(R.id.historyAnswer);
         historyQuestion = (TextView) findViewById(R.id.historyQuestionTextView);
+
+        historyLayout.setOnClickListener(traverseHistory);
+        historyUnknown.setOnClickListener(traverseHistory);
+        historyNo.setOnClickListener(traverseHistory);
+        historyYes.setOnClickListener(traverseHistory);
+        historyLeft.setOnClickListener(traverseHistory);
+        historyRight.setOnClickListener(traverseHistory);
+        historyQuestion.setOnClickListener(traverseHistory);
+        historyAnswer.setOnClickListener(traverseHistory);
 
         while (type.equals(Node.OR_TYPE)){
             ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
@@ -281,6 +328,38 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         });
     }
 
+    /** only updates for next question movements */
+    private void updateQuestion() {
+        String type = questionHandler.getCurrentQuestionType();
+        while (type.equals(Node.OR_TYPE)) {
+            ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
+            String first = temp.get(0);
+            questionHandler.giveInput(first);
+            type = questionHandler.getCurrentQuestionType();
+        }
+        if (type.equals(Node.NUMBER_TYPE)) {
+            updateView(rangeView);
+            questionBox.setText(questionHandler.getCurrentQuestion());
+            openKeyboard();
+        } else if (type.equals(Node.BUTTON_TYPE)) {
+            int size = questionHandler.getConnectingAnswers().size();
+
+            if (size == 3) {
+                updateView(buttonView);
+                questionBox.setText(questionHandler.getCurrentQuestion());
+            } else if (size == 2) {
+                updateView(twoButtonView);
+                twoButtonViewInit();
+            } else {
+                updateView(spinnerView);
+                initSpinnerResults();
+            }
+        } else {                    //Also add logical options
+            updateView(terminalView);
+            terminalScreen();
+        }
+    }
+
     //initialize Button Listeners
     private void buttonScreen() {
         yes = (Button) findViewById(R.id.yes);
@@ -293,34 +372,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 lastClicked = YES_INDEX;
 
                 questionHandler.giveInput("yes");
-                String type = questionHandler.getCurrentQuestionType();
-                while (type.equals(Node.OR_TYPE)) {
-                    ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
-                    String first = temp.get(0);
-                    questionHandler.giveInput(first);
-                    type = questionHandler.getCurrentQuestionType();
-                }
-                if (type.equals(Node.NUMBER_TYPE)) {
-                    updateView(rangeView);
-                    questionBox.setText(questionHandler.getCurrentQuestion());
-                    openKeyboard();
-                } else if (type.equals(Node.BUTTON_TYPE)) {
-                    int size = questionHandler.getConnectingAnswers().size();
-
-                    if (size == 3) {
-                        updateView(buttonView);
-                        questionBox.setText(questionHandler.getCurrentQuestion());
-                    } else if (size == 2) {
-                        updateView(twoButtonView);
-                        twoButtonViewInit();
-                    } else {
-                        updateView(spinnerView);
-                        initSpinnerResults();
-                    }
-                } else {                    //Also add logical options
-                    updateView(terminalView);
-                    terminalScreen();
-                }
+                updateQuestion();
             }
         });
 
@@ -329,34 +381,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             public void onClick(View v) {
                 lastClicked = NO_INDEX;
                 questionHandler.giveInput("no");
-                String type = questionHandler.getCurrentQuestionType();
-                while (type.equals(Node.OR_TYPE)) {
-                    ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
-                    String first = temp.get(0);
-                    questionHandler.giveInput(first);
-                    type = questionHandler.getCurrentQuestionType();
-                }
-                if (type.equals(Node.NUMBER_TYPE)) {
-                    updateView(rangeView);
-                    questionBox.setText(questionHandler.getCurrentQuestion());
-                    openKeyboard();
-                } else if (type.equals(Node.BUTTON_TYPE)) {
-                    int size = questionHandler.getConnectingAnswers().size();
-
-                    if (size == 3) {
-                        updateView(buttonView);
-                        questionBox.setText(questionHandler.getCurrentQuestion());
-                    } else if (size == 2) {
-                        updateView(twoButtonView);
-                        twoButtonViewInit();
-                    } else {
-                        updateView(spinnerView);
-                        initSpinnerResults();
-                    }
-                } else {                    //Also add logical options
-                    updateView(terminalView);
-                    terminalScreen();
-                }
+                updateQuestion();
             }
         });
 
@@ -365,34 +390,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             public void onClick(View v) {
                 lastClicked = UNKNOWN_INDEX;
                 questionHandler.giveInput("yes");
-                String type = questionHandler.getCurrentQuestionType();
-                while (type.equals(Node.OR_TYPE)) {
-                    ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
-                    String first = temp.get(0);
-                    questionHandler.giveInput(first);
-                    type = questionHandler.getCurrentQuestionType();
-                }
-                if (type.equals(Node.NUMBER_TYPE)) {
-                    updateView(rangeView);
-                    questionBox.setText(questionHandler.getCurrentQuestion());
-                    openKeyboard();
-                } else if (type.equals(Node.BUTTON_TYPE)) {
-                    int size = questionHandler.getConnectingAnswers().size();
-
-                    if (size == 3) {
-                        updateView(buttonView);
-                        questionBox.setText(questionHandler.getCurrentQuestion());
-                    } else if (size == 2) {
-                        updateView(twoButtonView);
-                        twoButtonViewInit();
-                    } else {
-                        updateView(spinnerView);
-                        initSpinnerResults();
-                    }
-                } else {                    //Also add logical options
-                    updateView(terminalView);
-                    terminalScreen();
-                }
+                updateQuestion();
             }
         });
     }
@@ -520,11 +518,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getBaseContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
-                //List<String> questions = new Stack<String>();
-                Stack<Node> s = questionHandler.getQuestionHistory();
-
-                intent.putExtra(HistoryList.STACK_KEY, (Serializable) s);
+                intent.putExtra(HistoryList.STACK_KEY, questionHandler.getQuestionHistory());
                 startActivity(intent);
             }
         });
