@@ -27,7 +27,8 @@ in partnership with UW Medicine and Harborview Medical Center
 - **DEBUG:** Hide Keyboard functionality
 - **DEBUG:** Get Isiah's UI approval
 - **DEBUG:** Traversal of NIHSS <= 5
-
+- Pushing back buttons should close keyboard
+- Buttons at top same as bottom
 ### Architecture
 
 - Backend Integration

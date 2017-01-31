@@ -62,6 +62,10 @@ public class QuestionHandler {
         return this.currentQuestion.type;
     }
 
+    public String getCurrentAnswer() {
+        return this.currentQuestion.answer;
+    }
+
     public Stack<Node> getQuestionHistory(){
         return this.history;
     }

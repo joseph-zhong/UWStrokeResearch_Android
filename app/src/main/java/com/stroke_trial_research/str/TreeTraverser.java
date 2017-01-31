@@ -87,6 +87,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         String type = questionHandler.getCurrentQuestionType();
         questionTextView.setText(questionHandler.getCurrentQuestion());
 
+        //Listener
         View.OnClickListener historyOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,15 +122,8 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
      * False otherwise */
     private boolean traverseHistory() {
         if (questionHandler.getQuestionHistory() != null && !questionHandler.getQuestionHistory().isEmpty()) {
-            hideKeyboard();
-            Node prevNode = questionHandler.revertHistory();
-
-            Stack<Node> asdf = (Stack<Node>) questionHandler.getQuestionHistory().clone();
-            while (!asdf.isEmpty()) {
-                Log.i("TESTING", "History: " + asdf.pop());
-            }
-            Log.i("TESTING", "History: " + prevNode.getType());
-
+            //hideKeyboard();
+            questionHandler.revertHistory();
             updateQuestion(questionHandler.getCurrentQuestionType());
             return true;
         }
@@ -147,16 +141,19 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     }
 
     private void hideKeyboard() {
-//        ((InputMethodManager) getSystemService(TreeTraverser.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
-//                answerEditText.getWindowToken(), 0);
+        ((InputMethodManager) getSystemService(TreeTraverser.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(
+                answerEditText.getWindowToken(), 0);
     }
 
     private void updateView(View newV) {
+        if (!(newV instanceof RelativeLayout)) {
+            throw new IllegalArgumentException("Incorrect View Type");
+        }
         resetHistoryView();
         this.currentView.setVisibility(View.GONE);
         newV.setVisibility(View.VISIBLE);
 
-        //TODO Assert type
+
         this.currentView = (RelativeLayout) newV;
 
         // update history
@@ -237,7 +234,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         spinnerCont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard();
                 questionHandler.giveInput(spinnerResp);
                 updateQuestion();
             }
@@ -246,16 +242,17 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
 
     /** only updates for next question movements */
     private void updateQuestion() {
+        //initializes text field to nothing
         answerEditText.setText("");
 
-        String type = questionHandler.getCurrentQuestionType();
-        while (type.equals(Node.OR_TYPE)) {
+        String currentQuestionType = questionHandler.getCurrentQuestionType();
+        while (currentQuestionType.equals(Node.OR_TYPE)) {
             ArrayList<String> temp = (ArrayList<String>) questionHandler.getConnectingNodes();
             String first = temp.get(0);
             questionHandler.giveInput(first);
-            type = questionHandler.getCurrentQuestionType();
+            currentQuestionType = questionHandler.getCurrentQuestionType();
         }
-        updateQuestion(type);
+        updateQuestion(currentQuestionType);
     }
 
     private void updateQuestion(String type) {
@@ -264,6 +261,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             questionTextView.setText(questionHandler.getCurrentQuestion());
             openKeyboard();
         } else if (type.equals(Node.BUTTON_TYPE)) {
+            hideKeyboard();
             int size = questionHandler.getConnectingAnswers().size();
 
             if (size == 3) {
@@ -276,7 +274,8 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 updateView(spinnerView);
                 initSpinnerResults();
             }
-        } else {                    //Also add logical options
+        } else {
+            hideKeyboard();
             updateView(terminalView);
             terminalScreen();
         }
@@ -291,9 +290,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard();
                 lastClicked = YES_INDEX;
-
                 questionHandler.giveInput("yes");
                 updateQuestion();
             }
@@ -302,7 +299,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard();
                 lastClicked = NO_INDEX;
                 questionHandler.giveInput("no");
                 updateQuestion();
@@ -312,7 +308,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         unknown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard();
                 lastClicked = UNKNOWN_INDEX;
                 questionHandler.giveInput("unknown");
                 updateQuestion();
@@ -327,7 +322,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard();
                 lastClicked = RIGHT_INDEX;
                 questionHandler.giveInput(right.getText().toString());
                 updateQuestion();
@@ -337,7 +331,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard();
                 lastClicked = LEFT_INDEX;
                 questionHandler.giveInput(left.getText().toString());
                 updateQuestion();
@@ -375,7 +368,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard();
                 intent.putExtra(HistoryList.STACK_KEY, questionHandler.getQuestionHistory());
                 startActivity(intent);
             }
