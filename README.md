@@ -23,8 +23,10 @@ in partnership with UW Medicine and Harborview Medical Center
   - ~~Client/Admin Page~~
   - ~~List of Trees Available~~
 - Contact Page
-- **DEBUG:** Last History traversal button
+- ~~**DEBUG:** Last History traversal button~~
+- **DEBUG:** Hide Keyboard functionality
 - **DEBUG:** Get Isiah's UI approval
+- **DEBUG:** Traversal of NIHSS <= 5
 
 ### Architecture
 
