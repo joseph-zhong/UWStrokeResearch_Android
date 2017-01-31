@@ -41,7 +41,7 @@ public class QuestionHandler {
         }else if(this.currentQuestion.getType().equals("RESULT")){
             //If the type is result, return researcher information
             ResultNode node = (ResultNode) this.currentQuestion;
-            return "Please contact " + node.getResearcher() + " at " + node.getPhone();
+            return node.getQuestion() + "\n" + node.getPhone();
         }
         //Return the question of the current node
         return this.currentQuestion.question;

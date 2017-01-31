@@ -130,7 +130,7 @@ public class JSONParser {
                         Log.d("DEBUG", "Successfully added an UNKNOWN terminal node");
                         break;
                     case "RESULT": //FOR RESULT NODES
-                        ResultNode resnr = new ResultNode(name, question, jnode.getString("type"));
+                        ResultNode resnr = new ResultNode(name, question, jnode.getString("type"), jnode.getString("phone"));
                         nodes.add(resnr);
                         Log.d("DEBUG", "Successfully added a RESULT terminal node");
                         break;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -439,7 +440,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         });
 
         questionBox.setText(questionHandler.getCurrentQuestion());
-
+        Log.e("Term get", questionHandler.getCurrentQuestion());
 
         final Button history = (Button) findViewById(R.id.history);
 

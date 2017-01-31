@@ -18,7 +18,6 @@ import java.util.Stack;
 public class HistoryList extends AppCompatActivity {
 
     private ArrayAdapter<String> adapter;
-    private List<String> liste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class HistoryList extends AppCompatActivity {
         Intent i = getIntent();
         List<Node> nodeList = (List<Node>) i.getExtras().get("Quest");
         List<String> printStrings = new LinkedList<>();
-        Log.e("Blooooooop", "Worked");
+
         for (Node n : nodeList) {
             printStrings.add(n.toString());
         }

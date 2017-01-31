@@ -34,6 +34,14 @@ public class ResultNode extends Node {
         this.researcher = researcher;
     }
 
+    //Complete field constructor
+    public ResultNode(String QID, String question, String type,
+                      String phone) {
+        super(0, QID, question, type);
+        this.phone = phone;
+        this.researcher = "";
+    }
+
     public String getPhone() {
         return phone;
     }

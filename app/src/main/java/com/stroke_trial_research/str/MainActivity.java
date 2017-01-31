@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                int id = R.raw.stroke_demo_new;
+                int id = R.raw.decision_tree;
                 bundle.putInt("ID",id);
                 Intent intent = new Intent();
                 intent.setClass(getApplicationContext(), TreeTraverser.class); //perhaps wrong context
