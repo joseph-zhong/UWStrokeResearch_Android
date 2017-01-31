@@ -81,7 +81,7 @@ public abstract class Node implements Comparable<Node>, Serializable {
 
     @Override
     public String toString() {
-        return ("Q:" + this.question +" A: " + this.answer);
+        return ("Q:" + this.question +"\nA: " + this.answer);
     }
 
 }
