@@ -87,44 +87,14 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         String type = questionHandler.getCurrentQuestionType();
         questionTextView.setText(questionHandler.getCurrentQuestion());
 
-        View.OnClickListener traverseHistory = new View.OnClickListener() {
+        View.OnClickListener historyOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("TESTING", "Traverse History OnClicked!");
-                hideKeyboard();
-                Node prevNode = questionHandler.revertHistory();
-
-                Stack<Node> asdf = (Stack<Node>) questionHandler.getQuestionHistory().clone();
-                while (!asdf.isEmpty()) {
-                    Log.i("TESTING", "History: " + asdf.pop());
-                }
-                Log.i("TESTING", "History: " + prevNode.getType());
-
-                String type = questionHandler.getCurrentQuestionType();
-                questionTextView.setText(questionHandler.getCurrentQuestion());
-                if (type.equals(Node.NUMBER_TYPE)) {
-                    updateView(rangeView);
-
-                    openKeyboard();
-                } else if (type.equals(Node.BUTTON_TYPE)) {
-
-                    int size = questionHandler.getConnectingAnswers().size();
-
-                    if (size == 3) {
-                        updateView(buttonView);
-                    } else if (size == 2) {
-                        updateView(twoButtonView);
-                        twoButtonViewInit();
-                    } else {
-                        updateView(spinnerView);
-                        initSpinnerResults();
-                    }
-                } else {                    //Also add logical options
-                    updateView(terminalView);
-                    terminalScreen();
-                }
+                traverseHistory();
             }
         };
+
         // history
         historyLayout = (RelativeLayout) findViewById(R.id.historyLayout);
         historyUnknown = (Button) findViewById(R.id.historyUnknown);
@@ -135,16 +105,45 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         historyAnswerTextView = (TextView) findViewById(R.id.historyAnswer);
         historyQuestionTextView = (TextView) findViewById(R.id.historyQuestionTextView);
 
-        historyLayout.setOnClickListener(traverseHistory);
-        historyUnknown.setOnClickListener(traverseHistory);
-        historyNo.setOnClickListener(traverseHistory);
-        historyYes.setOnClickListener(traverseHistory);
-        historyLeft.setOnClickListener(traverseHistory);
-        historyRight.setOnClickListener(traverseHistory);
-        historyQuestionTextView.setOnClickListener(traverseHistory);
-        historyAnswerTextView.setOnClickListener(traverseHistory);
+        historyLayout.setOnClickListener(historyOnClickListener);
+        historyUnknown.setOnClickListener(historyOnClickListener);
+        historyNo.setOnClickListener(historyOnClickListener);
+        historyYes.setOnClickListener(historyOnClickListener);
+        historyLeft.setOnClickListener(historyOnClickListener);
+        historyRight.setOnClickListener(historyOnClickListener);
+        historyQuestionTextView.setOnClickListener(historyOnClickListener);
+        historyAnswerTextView.setOnClickListener(historyOnClickListener);
 
         updateQuestion();
+    }
+
+    /** Returns true if traversal of history is possible and successful
+     * False otherwise */
+    private boolean traverseHistory() {
+        if (questionHandler.getQuestionHistory() != null && !questionHandler.getQuestionHistory().isEmpty()) {
+            hideKeyboard();
+            Node prevNode = questionHandler.revertHistory();
+
+            Stack<Node> asdf = (Stack<Node>) questionHandler.getQuestionHistory().clone();
+            while (!asdf.isEmpty()) {
+                Log.i("TESTING", "History: " + asdf.pop());
+            }
+            Log.i("TESTING", "History: " + prevNode.getType());
+
+            updateQuestion(questionHandler.getCurrentQuestionType());
+            return true;
+        }
+        Log.i("TESTING", "End of History Reached!");
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.i("TESTING", "onBackPressed Clicked!");
+        if (!traverseHistory()) {
+            // go back to previous page or exit
+            super.onBackPressed();
+        }
     }
 
     private void hideKeyboard() {
@@ -256,6 +255,10 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             questionHandler.giveInput(first);
             type = questionHandler.getCurrentQuestionType();
         }
+        updateQuestion(type);
+    }
+
+    private void updateQuestion(String type) {
         if (type.equals(Node.NUMBER_TYPE)) {
             updateView(rangeView);
             questionTextView.setText(questionHandler.getCurrentQuestion());
