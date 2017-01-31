@@ -4,10 +4,17 @@
     <item name="main" type="color">#4B2E83</item>
     <item name="white" type="color">#FFF</item>
 
+    <!-- Main Colors-->
+    <item name="red" type="color">#F26565</item>
+    <item name="green" type="color">#3CD198</item>
+    <item name="gray" type="color">#BCB6B6</item>
+
     <!--FlatUI Colors-->
     <item name="wisteria" type="color">#8e44ad</item>
     <item name="amethyst" type="color">#9b59b6</item>
     <item name="seafoam" type="color">#66ff99</item>
+
+    <!-- ?? -->
     <item name="kidney" type="color">#ff5050</item>
     <item name="cloud" type="color">#ecf0f1</item>
     <item name="silver" type="color">#bdc3c7</item>
