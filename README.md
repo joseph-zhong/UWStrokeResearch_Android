@@ -1,22 +1,31 @@
 # UWStrokeResearch_Android
 
-- Repository for Android Mobile App 
-- Facilitating Stroke Research with UW Medicine and Harborview Medical Center
+Repository for Android Mobile App
+
+Facilitating stroke research with MD David Tirschwell, Dr. Richard Anderson, and Glenn Schubert
+in partnership with UW Medicine and Harborview Medical Center
+
+## Summary
+
+### Authors
+
+- Kieran Hess
+- James Riggleman
+- Joseph Zhong
+
+### iOS App Repo
 - [iOS App Repository](https://github.com/Dilraj-Singh-Devgun/UWStrokeResearch_iOS)
 
 ## TODO
 ### Frontend
 
-- Hardcoding 
+- ~~Hardcoding~~
   - ~~Client/Admin Page~~
   - ~~List of Trees Available~~
-  - Tree Adder
-  - Main UI (Question/Input)
-    - https://github.com/kaelaela/VerticalViewPager
-  - Contact
-  - Set up back button (Joseph)
-  - Set up History functionality (Kieran)
-  - Fix Constants (James)
+- Contact Page
+- **DEBUG:** Last History traversal button
+- **DEBUG:** Get Isiah's UI approval
+
 ### Architecture
 
 - Backend Integration
