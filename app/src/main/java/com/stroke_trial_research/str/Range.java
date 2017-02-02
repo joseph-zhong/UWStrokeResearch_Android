@@ -39,9 +39,9 @@ public class Range implements Serializable{
     //checks whether a value fits within the range
     public boolean isBetween (int value) {
         if (this.type.toLowerCase().equals("range")) {
-            return value > this.lower || value < this.upper;
+            return value >= this.lower && value < this.upper;
         } else if (this.type.toLowerCase().equals("equals")) {
-            return value >= this.lower || value <= this.upper;
+            return value == this.lower && value == this.upper;
         } else {
             Log.d("E", "Incompatible type");
             return false;

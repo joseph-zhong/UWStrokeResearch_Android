@@ -27,9 +27,9 @@ in partnership with UW Medicine and Harborview Medical Center
 - **DEBUG:** Hide Keyboard functionality
 - **DEBUG:** Get Isiah's UI approval
 - **DEBUG:** Traversal of NIHSS <= 5
-- Buttons at top same as bottom (look for a chain of multiple backwards progressions and
-    try going backwards.
-- fix ischemic -> 5 -> 5 loop
+
+- Buttons at top same as previous back selection on concurrent selection
+    (look for a chain of multiple backwards button progressions and try going backwards.)
 ### Architecture
 
 - Backend Integration

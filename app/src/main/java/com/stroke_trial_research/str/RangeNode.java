@@ -56,26 +56,4 @@ public class RangeNode extends Node {
     public Map<Range, Node> getNodeConnections() {
         return nodeConnections;
     }
-
-    /*
-    //Possible implementation of Storing ranges
-    //wherein we use regular expressions.
-    public class RangePair {
-        public final String[] SYMBOLS= {"!=", "==", ">", "<", ">=", "<=", "\0"};
-        public final Set<String> VALID_COMPS = new HashSet<String>(Arrays.asList(SYMBOLS));
-
-        private int value;
-        private String comparator;
-
-        public RangePair(int value, String comparator) {
-            this.value = value;
-            //gives special symbol if it can't tell the comparison
-            if (VALID_COMPS.contains(comparator)) {
-                this.comparator = comparator;
-            } else {
-                Log.e("RangeNode", "Illegal expression");
-                this.comparator = "\0";
-            }
-        }
-    } */
 }

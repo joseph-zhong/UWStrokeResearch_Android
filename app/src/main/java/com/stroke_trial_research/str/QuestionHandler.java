@@ -89,8 +89,8 @@ public class QuestionHandler {
                     return "Please insert numeric value";
                 }
                 for(Range range : nextNumber.keySet()){
-
-                    if(range.lower <= answer && answer < range.upper){
+                    //TODO implement Range.isBetween method
+                    if(range.isBetween(answer)){
                         Log.e("connections", nextNumber.get(range));
                         setCurrentNode(nextNumber.get(range), input);
                     }

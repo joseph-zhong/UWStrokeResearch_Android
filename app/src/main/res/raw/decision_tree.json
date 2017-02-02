@@ -18,7 +18,7 @@
 		"type": "NUMBER",
 		"question": "Hours Since Last Known Normal",
 		"options": [
-			{"type": "RANGE", "lower": 0, "upper": 7, "next": "q003"},
+			{"type": "RANGE", "lower": 0, "upper": 6, "next": "q003"},
 			{"type": "RANGE", "lower": 6, "upper": 10, "next": "q011"},
 			{"type": "RANGE", "lower": 10, "upper": 13, "next": "q010"},
 			{"type": "RANGE", "lower": 13, "upper": 17, "next": "q005"},

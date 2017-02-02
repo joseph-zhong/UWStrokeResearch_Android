@@ -162,6 +162,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             historyQuestionTextView.setText(prevNode.question);
             historyQuestionTextView.setVisibility(View.VISIBLE);
             if (prevNode.type.equals(Node.BUTTON_TYPE)) {
+                Log.i("LAST CLICKED", ""+lastClicked);
                 switch (lastClicked) {
                     case RIGHT_INDEX:
                         historyRight.setText(prevNode.answer);
@@ -219,6 +220,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                 //grab text from bar
                 String response = answerEditText.getText().toString();
 
+                Log.i("RESPONSE", response);
                 //go to the next node
                 questionHandler.giveInput(response);
                 updateQuestion();

@@ -94,7 +94,7 @@ public class JSONParser {
                         for (int i = 0; i < options.length(); i++) {
                             JSONObject jsonObject = options.getJSONObject(i);
                             String s = jsonObject.getString("type");
-                            if (s.equals("RANGE")) {
+                            if (s.equals("RANGE")) { //Add a range Node
                                 rn.addRangeNodeS(jsonObject.getString("lower"),
                                         jsonObject.getString("upper"),
                                         s,
