@@ -20,12 +20,14 @@ public class DiscreteNode extends Node {
     //Connections of phrase to QID
     private Map<String, String> connections;
     private Map<String, Node> nodeConnections;
+    private int answerIndex;
 
     //Constructor for a HashSet of nodes
     public DiscreteNode(int connectNum, String QID, String question) {
         super(connectNum, QID, question, "BUTTON");
         this.connections = new HashMap<String, String>();
         this.nodeConnections = new HashMap<String, Node>();
+        this.answerIndex = -1;
     }
 
     //Adds a new node name to the connections map.
@@ -45,5 +47,16 @@ public class DiscreteNode extends Node {
 
     public Map<String, Node> getNodeConnections() {
         return nodeConnections;
+    }
+
+    public int getAnswerIndex() {
+        return this.answerIndex;
+    }
+
+    public void setAnswerIndex(int value) {
+        if (value > 4 || value < 0) {
+            throw new IllegalArgumentException("Must be between 0 and 4 inclusive");
+        }
+        this.answerIndex = value;
     }
 }

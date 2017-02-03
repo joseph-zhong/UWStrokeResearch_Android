@@ -219,6 +219,40 @@ public class QuestionHandler {
         return null;
     }
 
+    public static List<String> getConnectingAnswers(Node node) {
+        String type = node.type;
+        List<String> list = new ArrayList<String>();
+        switch (type) {
+            case Node.NUMBER_TYPE:
+                Map<Range, String> mapR = ((RangeNode) node).getConnections();
+                for(Range r : mapR.keySet()){
+                    list.add(r.toString());
+                }
+                return list;
+            case Node.BUTTON_TYPE:
+                Map<String, String> mapB = ((DiscreteNode) node).getConnections();
+                for (String s: mapB.keySet()){
+                    list.add(s);
+                }
+                return list;
+            case Node.OR_TYPE:
+                list.add(((LogicNode) node).getFirst());
+                list.add(((LogicNode) node).getSecond());
+                return list;
+            default:
+                break;
+        }
+        return null;
+    }
+
+    public boolean setAnswerIndex(int value) {
+        if (this.currentQuestion instanceof DiscreteNode) {
+            ((DiscreteNode)this.currentQuestion).setAnswerIndex(value);
+            return true;
+        }
+        return false;
+    }
+
     public Node revertHistory() {
         if (this.history.isEmpty()) {
             return null;

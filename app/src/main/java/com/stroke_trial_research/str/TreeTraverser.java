@@ -35,8 +35,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     private static final int LEFT_INDEX = 3;
     private static final int RIGHT_INDEX = 4;
 
-    private int lastClicked = -1;
-
     private QuestionHandler questionHandler;
     private TextView questionTextView, historyQuestionTextView, historyAnswerTextView;
     private EditText answerEditText;
@@ -162,8 +160,9 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             historyQuestionTextView.setText(prevNode.question);
             historyQuestionTextView.setVisibility(View.VISIBLE);
             if (prevNode.type.equals(Node.BUTTON_TYPE)) {
-                Log.i("LAST CLICKED", ""+lastClicked);
-                switch (lastClicked) {
+                //int twoButtIndex = QuestionHandler.getConnectingAnswers(prevNode).indexOf(prevNode.answer);
+                int index = ((DiscreteNode) prevNode).getAnswerIndex();
+                switch (index) {
                     case RIGHT_INDEX:
                         historyRight.setText(prevNode.answer);
                         historyRight.setVisibility(View.VISIBLE);
@@ -292,7 +291,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lastClicked = YES_INDEX;
+                questionHandler.setAnswerIndex(YES_INDEX);
                 questionHandler.giveInput("yes");
                 updateQuestion();
             }
@@ -301,7 +300,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lastClicked = NO_INDEX;
+                questionHandler.setAnswerIndex(NO_INDEX);
                 questionHandler.giveInput("no");
                 updateQuestion();
             }
@@ -310,7 +309,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         unknown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lastClicked = UNKNOWN_INDEX;
+                questionHandler.setAnswerIndex(UNKNOWN_INDEX);
                 questionHandler.giveInput("unknown");
                 updateQuestion();
             }
@@ -324,7 +323,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lastClicked = RIGHT_INDEX;
+                questionHandler.setAnswerIndex(RIGHT_INDEX);
                 questionHandler.giveInput(right.getText().toString());
                 updateQuestion();
             }
@@ -333,7 +332,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lastClicked = LEFT_INDEX;
+                questionHandler.setAnswerIndex(LEFT_INDEX);
                 questionHandler.giveInput(left.getText().toString());
                 updateQuestion();
             }
