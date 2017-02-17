@@ -89,7 +89,7 @@ public class QuestionHandler {
                     return "Please insert numeric value";
                 }
                 for(Range range : nextNumber.keySet()){
-                    //TODO implement Range.isBetween method
+
                     if(range.isBetween(answer)){
                         Log.e("connections", nextNumber.get(range));
                         setCurrentNode(nextNumber.get(range), input);
@@ -100,7 +100,8 @@ public class QuestionHandler {
                 Map<String, String> nextNodes = ((DiscreteNode) this.currentQuestion).getConnections();
 
                 try {
-                    String next = nextNodes.get(input);
+                    String next = nextNodes.get(input.toUpperCase());
+
                     setCurrentNode(next, input);
                     return "You have answered " + input;
                 } catch(IllegalArgumentException e) {
@@ -142,6 +143,8 @@ public class QuestionHandler {
 
     //Setting the current node with input
     private void setCurrentNode(String QUID, String input){
+
+        Log.e("Debug", QUID + " " + input);
         //push the current question
         Log.v("VERBOSE", "setCurrentNode called");
         if (this.currentQuestion != null) {

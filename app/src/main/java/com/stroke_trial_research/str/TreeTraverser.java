@@ -292,7 +292,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             @Override
             public void onClick(View v) {
                 questionHandler.setAnswerIndex(YES_INDEX);
-                questionHandler.giveInput("yes");
+                questionHandler.giveInput("YES");
                 updateQuestion();
             }
         });
@@ -301,7 +301,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             @Override
             public void onClick(View v) {
                 questionHandler.setAnswerIndex(NO_INDEX);
-                questionHandler.giveInput("no");
+                questionHandler.giveInput("NO");
                 updateQuestion();
             }
         });
@@ -310,7 +310,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             @Override
             public void onClick(View v) {
                 questionHandler.setAnswerIndex(UNKNOWN_INDEX);
-                questionHandler.giveInput("unknown");
+                questionHandler.giveInput("UNKNOWN");
                 updateQuestion();
             }
         });

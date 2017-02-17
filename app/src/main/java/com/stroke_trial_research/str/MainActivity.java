@@ -38,8 +38,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
-        setUpHome();
+        //setContentView(R.layout.activity_main);
+        //setUpHome();
+
+        setContentView(R.layout.test_view);
+        setUpTest();
     }
 
     private void setUpHome() {
@@ -58,6 +61,19 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this, "Coming soon!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setUpTest() {
+        final Button clientButton = (Button) findViewById(R.id.beginButton);
+
+
+        clientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, ClientListActivity.class));
+                startActivity(new Intent(getApplicationContext(), TreeTraverser.class));
             }
         });
     }
