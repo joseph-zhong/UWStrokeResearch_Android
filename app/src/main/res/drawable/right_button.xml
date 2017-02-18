@@ -3,7 +3,7 @@
     <item android:state_focused="true">
         <shape android:shape="rectangle"  >
             <corners android:radius="10dp" />
-            <solid android:color="@color/silver"/>
+            <solid android:color="@color/kidney"/>
             <size android:height="100dp"/>
             <size android:width="120dp"/>
         </shape>
@@ -11,7 +11,7 @@
     <item >
         <shape android:shape="rectangle"  >
             <corners android:radius="10dp" />
-            <solid android:color="@color/silver"/>
+            <solid android:color="@color/kidney"/>
             <size android:height="100dp"/>
             <size android:width="120dp"/>
         </shape>

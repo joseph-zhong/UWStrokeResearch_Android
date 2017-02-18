@@ -18,7 +18,11 @@ in partnership with UW Medicine and Harborview Medical Center
 
 ## TODO
 ### Frontend
-
+- Adapt view for horizontal viewing and different device compatibility.
+- Make it so easier to advance from keyboard (1-Click, not 2)
+- Reduce size of Nodes and/or improve parsing speed.
+- Add generic methods to Nodes?
+- Comment all code which is done
 - ~~Hardcoding~~
   - ~~Client/Admin Page~~
   - ~~List of Trees Available~~
