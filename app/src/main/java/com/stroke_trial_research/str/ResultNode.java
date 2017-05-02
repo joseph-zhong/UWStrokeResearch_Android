@@ -18,15 +18,15 @@ public class ResultNode extends Node {
     private String phone;
     private String researcher;
 
-    //Constructor for if a phone and researcher are not given
-         public ResultNode(String QID, String question, String type) {
+    // Constructor for if a phone and researcher are not given
+    public ResultNode(String QID, String question, String type) {
         super(0, QID, question, type);
         this.phone = "";
         this.researcher = "";
     }
 
 
-     //Complete field constructor
+    // Complete field constructor
     public ResultNode(String QID, String question, String type,
                       String phone, String researcher) {
         super(0, QID, question, type);

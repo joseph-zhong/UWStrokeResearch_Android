@@ -1,0 +1,80 @@
+CLIENT LIST ACTIVTY---------------------------------------------------------------------------------
+
+
+        /* OLD WAY OF DOING IT
+        //List of the qid names
+        ArrayList<String> qidList = new ArrayList<>();
+        for (Node n:nodeList) {
+            qidList.add(n.getQID());
+        }
+        String[] values = new String[qidList.size()];
+        for (int i = 0; i < qidList.size(); i++) {
+            values[i] = qidList.get(i);
+        }*/
+
+        /* Links to Nodes. In future, link to list of saved trees on System
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+        rootListView.setAdapter(adapter);
+        */
+
+        //        // Create a progress bar to display while the list loads
+        //        ProgressBar progressBar = new ProgressBar(this);
+        //        progressBar.setLayoutParams(new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
+        //                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+        //        progressBar.setIndeterminate(true);
+        //        rootListView.setEmptyView(progressBar);
+        //
+        //        // Must add the progress bar to the root of the layout
+        //        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+        //        root.addView(progressBar);
+        //
+        //        // For the cursor adapter, specify which columns go into which views
+        //        String[] fromColumns = {ContactsContract.Data.DISPLAY_NAME};
+        //        int[] toViews = {android.R.id.text1}; // The TextView in simple_list_item_1
+        //
+        //        // Create an empty adapter we will use to display the loaded data.
+        //        // We pass null for the cursor, then update it in onLoadFinished()
+        //        mAdapter = new SimpleCursorAdapter(this,
+        //                android.R.layout.simple_list_item_1, null,
+        //                fromColumns, toViews, 0);
+        //        rootListView.setAdapter(mAdapter);
+        //
+        //        // Prepare the loader.  Either re-connect with an existing one,
+        //        // or start a new one.
+        //        getLoaderManager().initLoader(0, null, this);
+
+        //    private void testJsonParser() {
+        //        long startTime = System.nanoTime();
+        //        mJsonParser.getNodeSet(getApplicationContext(), R.raw.stroke_demo);
+        //        long endTime = System.nanoTime();
+        //        long duration = (endTime - startTime);
+        //        Log.d("DEBUG", ("Set: " + duration));
+        //        //Takes about 70 milliseconds. Absolutely baffling.
+        //
+        //        startTime = System.nanoTime();
+        //        Node n = mJsonParser.getNodeTree(getApplicationContext(), R.raw.stroke_demo_new);
+        //        endTime = System.nanoTime();
+        //
+        //        duration = (endTime - startTime);
+        //        String dur = "Tree: " + duration;
+        //        Log.d("DEBUG", dur);
+        //        //Takes about 37 milliseconds. Hella slow right now.
+        //
+        //        //Eventual test of tree connections.
+        //        /*
+        //        String tip = "";
+        //
+        //        while (!n.type.equals("RESULT") || !n.type.equals("UNKNOWN")) {
+        //            tip = n.type;
+        //
+        //            switch (tip) {
+        //                case "NUMBER":
+        //                    break;
+        //                case "BUTTON":
+        //                    break;
+        //                case ""
+        //            }
+        //        }
+        //        */
+        //    }

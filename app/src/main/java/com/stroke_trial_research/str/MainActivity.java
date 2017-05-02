@@ -24,39 +24,38 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.Stack;
-
-import static com.stroke_trial_research.str.R.raw.stroke_demo;
 
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // MAIN
+        // setContentView(R.layout.activity_main);
+        // setUpHome();
 
-        //setContentView(R.layout.activity_main);
-        //setUpHome();
-
+        // TEST
         setContentView(R.layout.test_view);
         setUpTest();
     }
 
+    /**
+     * Sets up the HomeScreen for the app with buttons to take the user to
+     * to the administration part of the app or the client interface.
+     */
     private void setUpHome() {
         final Button clientButton = (Button) findViewById(R.id.client_btn);
         final Button adminButton = (Button) findViewById(R.id.admin_btn);
 
+        // Takes the user to the tree selection pane
         clientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, ClientListActivity.class));
-                startActivity(new Intent(getApplicationContext(), TreeTraverser.class));
+                startActivity(new Intent(MainActivity.this, ClientListActivity.class));
+                //startActivity(new Intent(getApplicationContext(), TreeTraverser.class));
             }
         });
 
+        // Need to implement the Admin page
         adminButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,15 +64,22 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     * Initializes a single button which when clicked will start
+     * the client interface with the default tree.
+     */
     private void setUpTest() {
         final Button clientButton = (Button) findViewById(R.id.beginButton);
 
-
+        // Directly starts the TreeTraverser application.
         clientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, ClientListActivity.class));
-                startActivity(new Intent(getApplicationContext(), TreeTraverser.class));
+                Bundle bundle = new Bundle();
+                bundle.putInt(CONSTANTS.BUNDLE_TREE_ID, R.raw.decision_tree);
+                Intent intent = new Intent(getApplicationContext(), TreeTraverser.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

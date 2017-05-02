@@ -53,6 +53,13 @@ public class DiscreteNode extends Node {
         return this.answerIndex;
     }
 
+    /**
+     * For setting the index of the position of the Node
+     * when it is displayed. 0-4 are the values of yes, no, unknown,
+     * right and left currently.
+     * @param value the value corresponding to the position on the screen the node should be
+     * displayed as.
+     */
     public void setAnswerIndex(int value) {
         if (value > 4 || value < 0) {
             throw new IllegalArgumentException("Must be between 0 and 4 inclusive");

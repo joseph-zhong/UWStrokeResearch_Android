@@ -49,12 +49,25 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        JSONParser jsonParser = new JSONParser();
-
-        //Grab the Node List
-        List<Node> nodeList = jsonParser.getNodeList(this, R.raw.decision_tree);
-
         setContentView(R.layout.combined_view);
+        List<Node> nodeList = JSONParser.getNodeList(this, R.raw.decision_tree);
+
+        /* Timing tests
+        long start = System.nanoTime();
+        //Grab the Node List
+        for (int i = 0; i < 1000; i++) {
+            nodeList = JSONParser.getNodeList(this, R.raw.decision_tree);
+        }
+        long end = System.nanoTime();
+        Log.e("TestTime", ""+(end-start));
+
+        start = System.nanoTime();
+        for (int i = 0; i < 1000; i++) {
+            JSONParser.getNodeTree(this, R.raw.decision_tree);
+        }
+        end = System.nanoTime();
+        Log.e("TestTime", ""+(end-start));
+        */
 
         // init relativeLayouts
         rangeView = (RelativeLayout) findViewById(R.id.rangeLayout);
@@ -68,7 +81,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         terminalView.setVisibility(View.GONE);
         buttonView.setVisibility(View.GONE);
         twoButtonView.setVisibility(View.GONE);
-
 
         //DEBUG- change
         currentView = spinnerView;
@@ -89,7 +101,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         View.OnClickListener historyOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("TESTING", "Traverse History OnClicked!");
                 traverseHistory();
             }
         };
@@ -125,13 +136,11 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
             updateQuestion(questionHandler.getCurrentQuestionType());
             return true;
         }
-        Log.i("TESTING", "End of History Reached!");
         return false;
     }
 
     @Override
     public void onBackPressed() {
-        Log.i("TESTING", "onBackPressed Clicked!");
         if (!traverseHistory()) {
             // go back to previous page or exit
             super.onBackPressed();
@@ -215,11 +224,8 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         rangeCont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("TESTING", "Continue button clicked");
                 //grab text from bar
                 String response = answerEditText.getText().toString();
-
-                Log.i("RESPONSE", response);
                 //go to the next node
                 questionHandler.giveInput(response);
                 updateQuestion();
@@ -361,8 +367,6 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
 
     private void terminalScreen(){
         questionTextView.setText(questionHandler.getCurrentQuestion());
-        Log.e("Term get", questionHandler.getCurrentQuestion());
-
         final Button history = (Button) findViewById(R.id.history);
 
         final Intent intent = new Intent(this, HistoryList.class);

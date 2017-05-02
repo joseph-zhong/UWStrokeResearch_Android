@@ -18,19 +18,25 @@ in partnership with UW Medicine and Harborview Medical Center
 
 ## TODO
 ### Frontend
+UI changes --
+
+Kieran
 - Adapt view for horizontal viewing and different device compatibility.
 - Make it so easier to advance from keyboard (1-Click, not 2)
-- Reduce size of Nodes and/or improve parsing speed.
-- Add generic methods to Nodes?
+
+James Riggleman
+- Reduce size of Nodes and improve parsing speed.
 - Comment all code which is done
+
+- Cacher
+- Endpoint Connector
+- Possible autoDial
+- Possible Loading screen
+
 - ~~Hardcoding~~
   - ~~Client/Admin Page~~
   - ~~List of Trees Available~~
 - Contact Page
-- ~~**DEBUG:** Last History traversal button~~
-- **DEBUG:** Hide Keyboard functionality
-- **DEBUG:** Get Isiah's UI approval
-- **DEBUG:** Traversal of NIHSS <= 5
 
 ### Architecture
 

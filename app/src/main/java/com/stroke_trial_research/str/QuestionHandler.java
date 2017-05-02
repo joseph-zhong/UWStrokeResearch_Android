@@ -91,7 +91,6 @@ public class QuestionHandler {
                 for(Range range : nextNumber.keySet()){
 
                     if(range.isBetween(answer)){
-                        Log.e("connections", nextNumber.get(range));
                         setCurrentNode(nextNumber.get(range), input);
                     }
                 }
@@ -124,9 +123,7 @@ public class QuestionHandler {
 
     //Set the current node with the specified quid
     private void setCurrentNode(String QUID){
-        Log.v("VERBOSE", "setCurrentNode called");
-        for(Node node : this.nodes){
-            Log.d("thing", node.getQuestion() + " " + node.getQID());
+        for(Node node : this.nodes) {
             if(node.getQID().equals(QUID)){
                 this.currentQuestion = node;
                 /* no history right now
@@ -143,16 +140,13 @@ public class QuestionHandler {
 
     //Setting the current node with input
     private void setCurrentNode(String QUID, String input){
-
-        Log.e("Debug", QUID + " " + input);
         //push the current question
-        Log.v("VERBOSE", "setCurrentNode called");
         if (this.currentQuestion != null) {
             if(this.currentQuestion.getType().equals(Node.OR_TYPE)) {
                 //do nothing?
                 //String s = getOrQuestions((LogicNode) this.currentQuestion);
                 //this.history.push(this.lookUpQuestion(s.substring(0, 4)) + " or " + this.lookUpQuestion(s.substring(5)) + " A: " + input);
-            }else{
+            } else {
                 this.currentQuestion.setAnswer(input);
                 this.history.push(this.currentQuestion);
             }

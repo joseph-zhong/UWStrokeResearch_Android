@@ -17,7 +17,6 @@ public abstract class Node implements Comparable<Node>, Serializable {
     public static final String BUTTON_TYPE = "BUTTON";
     public static final String OR_TYPE = "OR";
     public static final String RESULT_TYPE = "RESULT";
-
     public static final String UNKNOWN_RESPONSE = "UNKNOWN";
 
     //Number of Nodes in the connections
@@ -62,7 +61,6 @@ public abstract class Node implements Comparable<Node>, Serializable {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
-
 
     // Says that higher up nodes (ie with smaller QIDS) are greater and
     //that  q nodes are always greater than r nodes.
