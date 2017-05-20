@@ -1,11 +1,4 @@
 {
-	"q000": {
-		"type": "BUTTON",
-		"question": "Ready?",
-		"options": [
-			{"type": "EQUAL", "value":"start", "next": "q001"}
-		]
-	},
 	"q001": {
 		"type": "BUTTON",
 		"question": "STROKE TYPE?",
