@@ -51,6 +51,7 @@ public class JSONParser {
         return json;
     }
 
+    /*
     // Loads a JSON file from raw and finds all possible nodes
     // which it then loads into a ArrayList of Node names and returns
     public static ArrayList<Node> getNodeList(Context context, int filename){
@@ -127,7 +128,7 @@ public class JSONParser {
             return null;
         }
         return nodes;
-    }
+    }*/
 
     //Loads a JSON file from raw and finds a root node which it then
     //creates a Node tree from and returns the root node.

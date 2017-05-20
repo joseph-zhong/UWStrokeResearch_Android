@@ -62,6 +62,10 @@ public abstract class Node implements Comparable<Node>, Serializable {
         this.answer = answer;
     }
 
+    public String getAnswer() {
+        return answer;
+    }
+
     // Says that higher up nodes (ie with smaller QIDS) are greater and
     //that  q nodes are always greater than r nodes.
     public int compareTo(Node node) {

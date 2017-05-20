@@ -50,7 +50,8 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.combined_view);
-        List<Node> nodeList = JSONParser.getNodeList(this, R.raw.decision_tree);
+        //List<Node> nodeList = JSONParser.getNodeList(this, R.raw.decision_tree);
+        Node tree_root = JSONParser.getNodeTree(this, R.raw.decision_tree);
 
         /* Timing tests
         long start = System.nanoTime();
@@ -93,7 +94,7 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
 
         //Box For displaying the question
         questionTextView = (TextView) findViewById(R.id.questionTextView);
-        questionHandler = new QuestionHandler(nodeList);
+        questionHandler = new QuestionHandler(tree_root);
         String type = questionHandler.getCurrentQuestionType();
         questionTextView.setText(questionHandler.getCurrentQuestion());
 
@@ -160,13 +161,12 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
         this.currentView.setVisibility(View.GONE);
         newV.setVisibility(View.VISIBLE);
 
-
         this.currentView = (RelativeLayout) newV;
 
         // update history
         Node prevNode = questionHandler.getPrevNode();
         if (prevNode != null) {
-            historyQuestionTextView.setText(prevNode.question);
+            historyQuestionTextView.setText(prevNode.getQuestion());
             historyQuestionTextView.setVisibility(View.VISIBLE);
             if (prevNode.type.equals(Node.BUTTON_TYPE)) {
                 //int twoButtIndex = QuestionHandler.getConnectingAnswers(prevNode).indexOf(prevNode.answer);

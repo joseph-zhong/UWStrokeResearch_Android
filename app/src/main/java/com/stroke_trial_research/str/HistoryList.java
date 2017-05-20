@@ -2,7 +2,6 @@ package com.stroke_trial_research.str;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,17 +26,12 @@ public class HistoryList extends Activity {
         setContentView(R.layout.activity_history_list);
 
         Intent i = getIntent();
-//        Stack<Node> nodeStack = (Stack<Node>) i.getExtras().getSerializable(STACK_KEY);
         List<Node> nodeList = (List<Node>) i.getExtras().getSerializable(STACK_KEY);
-
         List<String> printStrings = new LinkedList<>();
 
         for (Node n : nodeList) {
             printStrings.add(n.toString());
         }
-//        while(!nodeStack.isEmpty()) {
-//            printStrings.add(nodeStack.pop().toString());
-//        }
 
         final ListView list = (ListView) findViewById(R.id.QuestionList);
 
