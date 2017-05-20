@@ -29,7 +29,7 @@
     <Button
         android:id="@+id/beginButton"
         android:layout_width="@dimen/buttonsize"
-        android:layout_height="@dimen/shortheight"
+        android:layout_height="@dimen/short_button_height"
         android:layout_below="@id/textView"
         android:layout_centerInParent="true"
         android:layout_margin="30dp"

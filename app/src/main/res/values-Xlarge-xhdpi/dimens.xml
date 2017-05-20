@@ -25,6 +25,8 @@
     <!-- test_view-->
     <dimen name="Wimagesize">600dp</dimen>
 
+    <dimen name="historytextsize">50sp</dimen>
+
 
     <!-- Button dimensions -->
     <dimen name="oval_rectangle_corner">100dp</dimen>

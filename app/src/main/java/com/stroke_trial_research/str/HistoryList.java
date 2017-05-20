@@ -36,7 +36,7 @@ public class HistoryList extends Activity {
         final ListView list = (ListView) findViewById(R.id.QuestionList);
 
         adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, printStrings);
+                R.layout.historytextview, printStrings);
         list.setAdapter(adapter);
     }
 }

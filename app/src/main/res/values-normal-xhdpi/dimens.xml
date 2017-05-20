@@ -24,6 +24,8 @@
 
     <dimen name="Wimagesize">300dp</dimen>
 
+    <dimen name="historytextsize">25sp</dimen>
+
     <!-- Button dimensions -->
     <dimen name="oval_rectangle_corner">100dp</dimen>
     <dimen name="curve_rectangle_corner">5dp</dimen>
