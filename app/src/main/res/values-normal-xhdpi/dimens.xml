@@ -9,12 +9,12 @@
     <dimen name="activity_horizontal_margin">64dp</dimen>
 
     <!-- Dimensions for phone-->
-    <dimen name="history_text_size">18sp</dimen>
+    <dimen name="history_text_size">25sp</dimen>
     <dimen name="text_size">24sp</dimen>
-    <dimen name="historybuttontextsize">12sp</dimen>
-    <dimen name="operatextsize">24sp</dimen>
-    <dimen name="buttonsize">100dp</dimen>
-    <dimen name="input">50dp</dimen>
+    <dimen name="historybuttontextsize">10sp</dimen>
+    <dimen name="operatextsize">33sp</dimen>
+    <dimen name="buttonsize">110dp</dimen>
+    <dimen name="input">60dp</dimen>
     <dimen name="short_button_height">50dp</dimen>
     <dimen name="shortheight">35dp</dimen>
     <dimen name="buttontextsize">12sp</dimen>

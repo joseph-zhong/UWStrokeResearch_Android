@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/historyQuestionTextView"
             android:background="@android:color/transparent"
-            android:textSize="@dimen/text_size"
+            android:textSize="@dimen/history_text_size"
             android:text="@string/app_name"
             android:layout_marginTop="@dimen/history_question_top_margin"
             android:layout_marginLeft="@dimen/main_margin"
@@ -36,14 +36,15 @@
 
         <Button
             android:text="@string/unknown"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/historybuttontextsize"
+            android:layout_width="@dimen/historybuttonsize"
+            android:layout_height="@dimen/historybuttonsize"
             android:id="@+id/historyUnknown"
             android:textColor="@color/white"
             android:background="@drawable/history_unknown"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/history_top_margin"
+            android:layout_marginTop="@dimen/topbuttonmargin"
             android:alpha="@string/history_alpha"
             android:visibility="invisible"
             android:shadowRadius="0"
@@ -51,8 +52,9 @@
 
         <Button
             android:text="@string/yes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/historybuttontextsize"
+            android:layout_width="@dimen/historybuttonsize"
+            android:layout_height="@dimen/historybuttonsize"
             android:id="@+id/historyYes"
             android:textColor="@color/white"
             android:background="@drawable/history_yes"
@@ -61,7 +63,7 @@
             android:layout_toEndOf="@+id/historyUnknown"
             android:layout_marginLeft="@dimen/big_margin"
             android:layout_marginStart="@dimen/big_margin"
-            android:layout_marginTop="@dimen/history_top_margin"
+            android:layout_marginTop="@dimen/topbuttonmargin"
             android:alpha="@string/history_alpha"
             android:visibility="invisible"
             android:shadowRadius="0"
@@ -69,8 +71,9 @@
 
         <Button
             android:text="@string/no"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/historybuttontextsize"
+            android:layout_width="@dimen/historybuttonsize"
+            android:layout_height="@dimen/historybuttonsize"
             android:id="@+id/historyNo"
             android:textColor="@color/white"
             android:background="@drawable/history_no"
@@ -79,7 +82,7 @@
             android:layout_toStartOf="@+id/historyUnknown"
             android:layout_marginRight="@dimen/big_margin"
             android:layout_marginEnd="@dimen/big_margin"
-            android:layout_marginTop="@dimen/history_top_margin"
+            android:layout_marginTop="@dimen/topbuttonmargin"
             android:alpha="@string/history_alpha"
             android:visibility="invisible"
             android:shadowRadius="0"
@@ -87,28 +90,30 @@
 
         <Button
             android:text=""
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/historybuttontextsize"
+            android:layout_width="@dimen/historybuttonsize"
+            android:layout_height="@dimen/historybuttonsize"
             android:id="@+id/historyRight"
             android:background="@drawable/history_right"
             android:textColor="@color/white"
             android:alpha="@string/history_alpha"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/main_margin"
-            android:layout_marginTop="@dimen/history_top_margin"
+            android:layout_marginTop="@dimen/topbuttonmargin"
             android:visibility="invisible"
             android:shadowRadius="0"
             style="?android:attr/borderlessButtonStyle" />
 
         <Button
             android:text=""
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/historybuttontextsize"
+            android:layout_width="@dimen/historybuttonsize"
+            android:layout_height="@dimen/historybuttonsize"
             android:id="@+id/historyLeft"
             android:background="@drawable/history_left"
             android:textColor="@color/white"
             android:alpha="@string/history_alpha"
-            android:layout_marginTop="@dimen/history_top_margin"
+            android:layout_marginTop="@dimen/topbuttonmargin"
             android:layout_marginLeft="@dimen/main_margin"
             android:layout_alignParentLeft="true"
             android:visibility="invisible"
@@ -123,10 +128,10 @@
         android:id="@+id/questionTextView"
         android:background="@android:color/transparent"
         android:gravity="left"
-        android:textSize="@dimen/text_size"
+        android:textSize="@dimen/operatextsize"
         android:text="@string/app_name"
         android:layout_marginLeft="@dimen/main_margin"
-        android:layout_marginTop="@dimen/question_margin"/>
+        android:layout_marginTop="@dimen/edge_margin"/>
 
 
     <RelativeLayout
@@ -149,6 +154,7 @@
 
         <Button
             android:text="@string/cont"
+            android:textSize="@dimen/buttontextsize"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -171,8 +177,9 @@
 
     <Button
         android:text="@string/unknown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="@dimen/buttontextsize"
+        android:layout_width="@dimen/buttonsize"
+        android:layout_height="@dimen/buttonsize"
         android:id="@+id/unknown"
         android:background="@drawable/unknown_button"
         android:textColor="@color/white"
@@ -184,8 +191,9 @@
 
     <Button
         android:text="@string/yes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="@dimen/buttontextsize"
+        android:layout_width="@dimen/buttonsize"
+        android:layout_height="@dimen/buttonsize"
         android:id="@+id/yes"
         android:background="@drawable/yes_button"
         android:textColor="@color/white"
@@ -198,8 +206,9 @@
 
     <Button
         android:text="@string/no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="@dimen/buttontextsize"
+        android:layout_width="@dimen/buttonsize"
+        android:layout_height="@dimen/buttonsize"
         android:id="@+id/no"
         android:textColor="@color/white"
         android:background="@drawable/no_button"
@@ -220,8 +229,9 @@
 
         <Button
             android:text="Left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttontextsize"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
             android:id="@+id/left"
             android:background="@drawable/left_button"
             android:textColor="@color/white"
@@ -234,8 +244,9 @@
 
         <Button
             android:text="Right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttontextsize"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/buttonsize"
             android:id="@+id/right"
             android:background="@drawable/right_button"
             android:textColor="@color/white"
@@ -256,20 +267,23 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/input"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/rangeTextBox"
             android:hint="@string/enter_num"
-            android:layout_marginBottom="180dp"
+            android:layout_marginBottom="@dimen/edge_margin"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:text="Please enter a value"
+            android:textSize="@dimen/text_size"/>
 
         <Button
             android:text="@string/cont"
+            android:textSize="@dimen/buttontextsize"
             android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/short_button_height"
             android:id="@+id/rangeContinue"
             android:background="@drawable/history_button"
             android:layout_marginBottom="@dimen/history_top_margin"
@@ -287,8 +301,9 @@
 
         <Button
             android:text="@string/history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/buttontextsize"
+            android:layout_width="@dimen/buttonsize"
+            android:layout_height="@dimen/short_button_height"
             android:id="@+id/history"
             android:textColor="@color/white"
             android:background="@drawable/history_button"

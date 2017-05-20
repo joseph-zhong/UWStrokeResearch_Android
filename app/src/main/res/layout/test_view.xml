@@ -5,11 +5,11 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="350dp"
+        android:layout_height="@dimen/Wimagesize"
         android:src="@drawable/uw_dawg"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:id="@+id/huskypic"/>
+        android:id="@+id/huskypic"
+        android:layout_centerInParent="true"/>
 
     <TextView
         android:id="@+id/textView"
@@ -24,18 +24,19 @@
         android:textAlignment="center"
         android:textColor="@color/amethyst"
         android:text="@string/title"
-        android:textSize="25sp"/>
+        android:textSize="@dimen/text_size"/>
 
     <Button
         android:id="@+id/beginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/buttonsize"
+        android:layout_height="@dimen/shortheight"
         android:layout_below="@id/textView"
         android:layout_centerInParent="true"
         android:layout_margin="30dp"
 
         android:background="@drawable/begin_button"
         android:gravity="center"
+        android:textSize="@dimen/buttontextsize"
         android:textColor="@color/white"
         android:text="Begin"/>
 
