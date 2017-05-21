@@ -16,6 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -233,7 +235,41 @@ public class TreeTraverser extends Activity implements AdapterView.OnItemSelecte
                     {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
+                            Log.w("yoloswag", "start");
+
                             rangeCont.performClick();
+                            /*
+                            ////Delete
+                            String filename = "myfile.json";
+                            String string = "Hello world!";
+                            FileOutputStream outputStream;
+
+                            try {
+                                outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+                                outputStream.write(string.getBytes());
+                                outputStream.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            /////
+
+                            File asdfdsa = getFilesDir();
+                            Log.w("yoloswag", asdfdsa.toString());
+                            Cacher.saveFile(asdfdsa, "thingy.json", "lolololosadfjlasdfjkasjdflkasljdfkasjkdfljkasdlfklkasldkfl");
+                            Cacher.saveFile(asdfdsa, "why.json", "lolololol");
+                            File f = Cacher.getLatestFile("why.json", asdfdsa);
+                            Log.w("yoloswag", f.toString());
+                            Log.w("yoloswag", Cacher.filenames(asdfdsa).toString());
+                            Log.w("yoloswag", Cacher.isLatestFile(f.getName(), asdfdsa) + " ");
+                            Log.w("yoloswag", Cacher.isLatestFile(f.getName(), asdfdsa) + " ");
+                            Log.w("yoloswag", "deleted " + asdfdsa.length());
+
+                            Log.w("yoloswag", "deleted " + Cacher.filenames(asdfdsa).toString());
+                            //Cacher.clearInternalStorage(asdfdsa);
+
+
+                            */
                             return true;
                         default:
                             break;
